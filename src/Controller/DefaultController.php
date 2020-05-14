@@ -51,8 +51,17 @@ class DefaultController extends AbstractController
     {
         $leapYear = false;
         $unixTime = time();
+
         if ($timestamp != '') {
-            $unixTime = strtotime($timestamp);
+
+            if (preg_match('/^[0-9]{4,4}$/', $timestamp)) {
+
+                $unixTime = mktime(1, 1, 1, 1, 1, $timestamp);
+
+            } else {
+
+                $unixTime = strtotime($timestamp);
+            }
         }
 
         if (date('L', $unixTime) == '1') {
