@@ -71,4 +71,22 @@ class DefaultController extends AbstractController
         return $this->json(['leapyear' => $leapYear]);
     }
 
+    /**
+     * Gültiges Datum
+     *
+     * @Route("/checkdate/{date}", name="checkdate", methods={"GET"})
+     */
+    public function checkdate(string $date)
+    {
+        $returnBool = false;
+
+        $matches = [];
+        if (preg_match('/^([0-2][0-9]{3,3})-([0-9]{2,2})-([0-9]{2,2})$/',
+            $date, $matches)) {
+
+            $returnBool = checkdate($matches[2], $matches[3], $matches[1]);
+        }
+        return $this->json(['checkdate' => $returnBool]);
+    }
+
 }
