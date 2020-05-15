@@ -72,7 +72,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * Gültiges Datum
+     * Gültiges Datum?
      *
      * @Route("/checkdate/{date}", name="checkdate", methods={"GET"})
      */
@@ -81,11 +81,19 @@ class DefaultController extends AbstractController
         $returnBool = false;
 
         $matches = [];
+
+        //YYYY-MM-DD
         if (preg_match('/^([0-2][0-9]{3,3})-([0-9]{2,2})-([0-9]{2,2})$/',
             $date, $matches)) {
-
             $returnBool = checkdate($matches[2], $matches[3], $matches[1]);
         }
+
+        //DD.MM.YYYY
+        if (preg_match('/^([0-9]{2,2})\.([0-9]{2,2})\.([0-2][0-9]{3,3})$/',
+            $date, $matches)) {
+            $returnBool = checkdate($matches[2], $matches[1], $matches[3]);
+        }
+
         return $this->json(['checkdate' => $returnBool]);
     }
 
