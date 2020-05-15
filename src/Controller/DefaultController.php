@@ -76,9 +76,9 @@ class DefaultController extends AbstractController
      *
      * @Route("/checkdate/{date}", name="checkdate", methods={"GET"})
      */
-    public function checkdate(string $date)
+    public function checkdate(string $date = '')
     {
-        $returnBool = false;
+        $returnBool = null;
 
         $matches = [];
 
@@ -94,7 +94,40 @@ class DefaultController extends AbstractController
             $returnBool = checkdate($matches[2], $matches[1], $matches[3]);
         }
 
+        if (is_null($returnBool)) {
+            return new Response('Bad Request', 500);
+        }
+
         return $this->json(['checkdate' => $returnBool]);
+    }
+
+    /**
+     * Wochentag
+     *
+     * @Route("/weekday/{date}", name="weekday", methods={"GET"})
+     */
+    public function weekday(string $date = '')
+    {
+        $ts = 0;
+
+        //YYYY-MM-DD
+        if (preg_match('/^([0-2][0-9]{3,3})-([0-9]{2,2})-([0-9]{2,2})$/',
+            $date, $matches)) {
+            $ts = mktime(0, 0, 0, $matches[2], $matches[3], $matches[1]);
+        }
+
+        //DD.MM.YYYY
+        if (preg_match('/^([0-9]{2,2})\.([0-9]{2,2})\.([0-2][0-9]{3,3})$/',
+            $date, $matches)) {
+            $ts = mktime(0, 0, 0, $matches[2], $matches[1], $matches[3]);
+        }
+
+        if ($ts > 0) {
+            $returnInt = (int) date('w', $ts);
+            return $this->json(['weekday' => $returnInt]);
+        } else {
+            return new Response('Bad Request', 500);
+        }
     }
 
 }
