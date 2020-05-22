@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Service\DateAndTimeService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -10,7 +12,8 @@ class DefaultController extends AbstractController
 {
     /**
      * UnixTime
-     *
+     * @param string $timestamp
+     * @return JsonResponse     *
      * @Route("/unixtime/{timestamp}", name="unixtime", methods={"GET"})
      */
     public function unixtime(string $timestamp = '')
@@ -26,73 +29,42 @@ class DefaultController extends AbstractController
 
     /**
      * Kalenderwoche
-     *
-     * @Route("/week/{timestamp}", name="week", methods={"GET"})
+     * @param DateAndTimeService $dts
+     * @param string $timestamp
+     * @return JsonResponse
+     * @Route("/week/{timestamp}", name="week", methods={"GET"})     *
      */
-    public function week(string $timestamp = '')
+    public function week(DateAndTimeService $dts, string $timestamp = '')
     {
-        $unixTime = time();
-        if ($timestamp != '') {
-
-            $unixTime = strtotime($timestamp);
-        }
-
-        $kw = (int) date('W', $unixTime);
+        $kw = $dts->week($timestamp);
 
         return $this->json(['week' => $kw]);
     }
 
     /**
      * Schaltjahr
-     *
+     * @param DateAndTimeService $dts
+     * @param string $timestamp
+     * @return JsonResponse
      * @Route("/leapyear/{timestamp}", name="leapyear", methods={"GET"})
      */
-    public function leapyear(string $timestamp = '')
+    public function leapyear(DateAndTimeService $dts, string $timestamp = '')
     {
-        $leapYear = false;
-        $unixTime = time();
-
-        if ($timestamp != '') {
-
-            if (preg_match('/^[0-9]{4,4}$/', $timestamp)) {
-
-                $unixTime = mktime(1, 1, 1, 1, 1, $timestamp);
-
-            } else {
-
-                $unixTime = strtotime($timestamp);
-            }
-        }
-
-        if (date('L', $unixTime) == '1') {
-            $leapYear = true;
-        }
+        $leapYear = $dts->leapYear($timestamp);
 
         return $this->json(['leapyear' => $leapYear]);
     }
 
     /**
      * Gültiges Datum?
-     *
+     * @param DateAndTimeService $dts
+     * @param string $date
+     * @return JsonResponse
      * @Route("/checkdate/{date}", name="checkdate", methods={"GET"})
      */
-    public function checkdate(string $date = '')
+    public function checkdate(DateAndTimeService $dts, string $date = '')
     {
-        $returnBool = null;
-
-        $matches = [];
-
-        //YYYY-MM-DD
-        if (preg_match('/^([0-2][0-9]{3,3})-([0-9]{2,2})-([0-9]{2,2})$/',
-            $date, $matches)) {
-            $returnBool = checkdate($matches[2], $matches[3], $matches[1]);
-        }
-
-        //DD.MM.YYYY
-        if (preg_match('/^([0-9]{2,2})\.([0-9]{2,2})\.([0-2][0-9]{3,3})$/',
-            $date, $matches)) {
-            $returnBool = checkdate($matches[2], $matches[1], $matches[3]);
-        }
+        $returnBool = $dts->checkdate($date);
 
         if (is_null($returnBool)) {
             return new Response('Bad Request', 500);
@@ -106,21 +78,9 @@ class DefaultController extends AbstractController
      *
      * @Route("/weekday/{date}", name="weekday", methods={"GET"})
      */
-    public function weekday(string $date = '')
+    public function weekday(DateAndTimeService $dts, string $date = '')
     {
-        $ts = 0;
-
-        //YYYY-MM-DD
-        if (preg_match('/^([0-2][0-9]{3,3})-([0-9]{2,2})-([0-9]{2,2})$/',
-            $date, $matches)) {
-            $ts = mktime(0, 0, 0, $matches[2], $matches[3], $matches[1]);
-        }
-
-        //DD.MM.YYYY
-        if (preg_match('/^([0-9]{2,2})\.([0-9]{2,2})\.([0-2][0-9]{3,3})$/',
-            $date, $matches)) {
-            $ts = mktime(0, 0, 0, $matches[2], $matches[1], $matches[3]);
-        }
+        $ts = $dts->weekday($date);
 
         if ($ts > 0) {
             $returnInt = (int) date('w', $ts);
