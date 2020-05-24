@@ -1,8 +1,7 @@
 actor: ApiTester
 modules:
     enabled:
-        - \App\Tests\Helper\Api
-        - Rest:
-              url: http://serviceapp/api/v1
-              depends: PphBrowser
+        - REST:
+              url: http://127.0.0.1:8000
+              depends: PhpBrowser
               part: Json

@@ -94,9 +94,14 @@ class DateAndTimeService
         }
 
         //DD.MM.YYYY
-        if (preg_match('/^([0-9]{2,2})\.([0-9]{2,2})\.([0-2][0-9]{3,3})$/',
+        elseif (preg_match('/^([0-9]{2,2})\.([0-9]{2,2})\.([0-2][0-9]{3,3})$/',
             $date, $matches)) {
             $ts = mktime(0, 0, 0, $matches[2], $matches[1], $matches[3]);
+        }
+
+        //Current day
+        elseif ($date == '') {
+            $ts = time();
         }
 
         return $ts;
