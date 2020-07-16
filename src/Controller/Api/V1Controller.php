@@ -24,7 +24,11 @@ class V1Controller extends AbstractController
             $unixTime = strtotime($timestamp);
         }
 
-        return $this->json(['time' => $unixTime]);
+        return $this->json(
+            ['time' => $unixTime],
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 
     /**
@@ -38,7 +42,11 @@ class V1Controller extends AbstractController
     {
         $kw = $dts->week($timestamp);
 
-        return $this->json(['week' => $kw]);
+        return $this->json(
+            ['week' => $kw],
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 
     /**
@@ -52,7 +60,11 @@ class V1Controller extends AbstractController
     {
         $leapYear = $dts->leapYear($timestamp);
 
-        return $this->json(['leapyear' => $leapYear]);
+        return $this->json(
+            ['leapyear' => $leapYear],
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 
     /**
@@ -67,10 +79,18 @@ class V1Controller extends AbstractController
         $returnBool = $dts->checkdate($date);
 
         if (is_null($returnBool)) {
-            return new Response('Bad Request', 500);
+            return new Response(
+                'Bad Request',
+                500,
+                ['Access-Control-Allow-Origin' => '*']
+            );
         }
 
-        return $this->json(['checkdate' => $returnBool]);
+        return $this->json(
+            ['checkdate' => $returnBool],
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 
     /**
@@ -84,9 +104,16 @@ class V1Controller extends AbstractController
 
         if ($ts > 0) {
             $returnInt = (int) date('w', $ts);
-            return $this->json(['weekday' => $returnInt]);
+            return $this->json(
+                ['weekday' => $returnInt],
+                200,
+                ['Access-Control-Allow-Origin' => '*']
+            );
         } else {
-            return new Response('Bad Request', 500);
+            return new Response('Bad Request',
+                500,
+                ['Access-Control-Allow-Origin' => '*']
+            );
         }
     }
 
