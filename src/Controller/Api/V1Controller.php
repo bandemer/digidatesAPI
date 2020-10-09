@@ -5,7 +5,6 @@ namespace App\Controller\Api;
 use App\Service\DateAndTimeService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class V1Controller extends AbstractController
@@ -20,7 +19,6 @@ class V1Controller extends AbstractController
     {
         $unixTime = time();
         if ($timestamp != '') {
-
             $unixTime = strtotime($timestamp);
         }
 
@@ -79,7 +77,7 @@ class V1Controller extends AbstractController
         $returnBool = $dts->checkdate($date);
 
         if (is_null($returnBool)) {
-            return new Response(
+            return $this->json(
                 'Bad Request',
                 500,
                 ['Access-Control-Allow-Origin' => '*']
@@ -95,7 +93,9 @@ class V1Controller extends AbstractController
 
     /**
      * Wochentag
-     *
+     * @param DateAndTimeService $dts
+     * @param string $date
+     * @return JsonResponse
      * @Route("/api/v1/weekday/{date}", name="weekday", methods={"GET"})
      */
     public function weekday(DateAndTimeService $dts, string $date = '')
@@ -110,7 +110,7 @@ class V1Controller extends AbstractController
                 ['Access-Control-Allow-Origin' => '*']
             );
         } else {
-            return new Response('Bad Request',
+            return $this->json('Bad Request',
                 500,
                 ['Access-Control-Allow-Origin' => '*']
             );
