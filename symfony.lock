@@ -89,6 +89,9 @@
     "myclabs/deep-copy": {
         "version": "1.9.5"
     },
+    "nikic/php-parser": {
+        "version": "v4.10.2"
+    },
     "phar-io/manifest": {
         "version": "1.0.3"
     },
@@ -163,6 +166,9 @@
     "ralouphie/getallheaders": {
         "version": "3.0.3"
     },
+    "sebastian/cli-parser": {
+        "version": "1.0.1"
+    },
     "sebastian/code-unit": {
         "version": "1.0.2"
     },
@@ -171,6 +177,9 @@
     },
     "sebastian/comparator": {
         "version": "4.0.0"
+    },
+    "sebastian/complexity": {
+        "version": "2.0.2"
     },
     "sebastian/diff": {
         "version": "4.0.1"
@@ -183,6 +192,9 @@
     },
     "sebastian/global-state": {
         "version": "4.0.0"
+    },
+    "sebastian/lines-of-code": {
+        "version": "1.0.3"
     },
     "sebastian/object-enumerator": {
         "version": "4.0.0"
@@ -214,6 +226,9 @@
             "config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "softcreatr/jsonpath": {
+        "version": "0.7.2"
+    },
     "symfony/browser-kit": {
         "version": "v5.0.8"
     },
@@ -244,6 +259,9 @@
     },
     "symfony/dependency-injection": {
         "version": "v5.0.8"
+    },
+    "symfony/deprecation-contracts": {
+        "version": "v2.2.0"
     },
     "symfony/dom-crawler": {
         "version": "v5.0.8"
@@ -297,6 +315,9 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.3.1"
     },
     "symfony/http-foundation": {
         "version": "v5.0.8"
