@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="columns">
+      <div class="column py-0">
+          <h1 class="is-size-1">DigiDates.de</h1>
+      </div>
+      <div class="column has-text-right py-4">
+          <a class="button" href="https://github.com/users/bandemernet/digidatesAPI">
+              digidatesAPI on github.com
+          </a>
+      </div>
+    </div>
+    <hr>
+    <p>{{ message }}</p>
+
+
+
+    <div class="field my-4">
+        <label class="label">Aktuelle Unix-Zeit</label>
+        <div class="control">
+            <input class="input" type="text" id="unixtime">
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+
+    const userAction = async () => {
+        const response = await fetch('https://digidates.de/api/v1/unixtime');
+        const myJson = await response.json(); //extract JSON from the http response
+        console.log(myJson);
+    }
+
+
+</script>
+
+{% endblock %}

@@ -14,9 +14,9 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
-        $message = 'digidatesAPI';
+        $message = 'Willkommen bei DigiDates.de - Deinem API-Provider für Zeit und Datumsberechnungen.';
 
-        return new Response($message);
+        return $this->render('sites/index.html.twig', ['message' => $message]);
     }
 
 

@@ -9,11 +9,11 @@ info:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 servers:
-  - url: "https:/api.digidates.de/{basePath}"
-    description: "API Server"
+  - url: "https:/digidates.de/api/{basePath}"
+    description: "Live Server"
     variables:
       basePath:
-        default: api/v1
+        default: v1
 paths:
   /unixtime:
     get:

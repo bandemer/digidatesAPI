@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}DigiDates{% endblock %}</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+{% block stylesheets %}{% endblock %}
+</head>
+<body>
+<section class="section">
+    <div class="container is-max-desktop">
+        {% block body %}{% endblock %}
+    </div>
+</section>
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            Made by <a href="https://bandemer.dev">bandemer.dev</a>
+        </p>
+    </div>
+</footer>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
