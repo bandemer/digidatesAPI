@@ -1,24 +1,30 @@
-swagger: "2.0"
+openapi: "3.0.3"
 info:
-  description: "API for time and date functions"
-  version: "1"
   title: "digidatesAPI"
+  description: "API for time and date functions"
+  version: "1.0"
   contact:
     email: "webmaster@digidates.de"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "api.digidates.de"
-basePath: "/api/v1"
-schemes:
-- "https"
+servers:
+  - url: "https:/api.digidates.de/{basePath}"
+    description: "API Server"
+    variables:
+      basePath:
+        default: v1
 paths:
   /unixtime:
     get:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      description: Returns unix time
+      responses:
+        '200':
+          description: A unix time
+          content:
+            application/json:
+              schema:
+                type: int
       parameters:
       - in: "body"
         name: "timestamp"
@@ -27,21 +33,16 @@ paths:
         schema:
           type: string
           example: "1970-01-01 00:00:01"
-      responses:
-        "200":
-          description: Unixtime of given Timestamp
-          schema:
-            type: object
-            properties:
-              time:
-                type: integer
-                description: Unixtime as integer
   /week:
     get:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      description: Returns week number
+      responses:
+        '200':
+          description: Number of Week
+          content:
+            application/json:
+              schema:
+                type: int
       parameters:
       - in: "body"
         name: "timestamp"
@@ -50,21 +51,16 @@ paths:
         schema:
           type: string
           example: "1970-01-01 00:00:01"
-      responses:
-        "200":
-          description: "Number of Week of given Time"
-          schema:
-            type: object
-            properties:
-              week:
-                type: integer
-                description: "Number of Week"
   /leapyear:
     get:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      description: Leap year or not
+      responses:
+        '200':
+          description: Is leap year or not
+          content:
+            application/json:
+              schema:
+                type: boolean
       parameters:
         - in: "body"
           name: "timestamp"
@@ -73,22 +69,16 @@ paths:
           schema:
             type: string
             example: "1970-01-01 00:00:01"
-      responses:
-        "200":
-          description: "Info if leap year or not"
-          schema:
-            type: object
-            properties:
-              leapyear:
-                type: boolean
-                description: "Leap year or not"
-
   /checkdate:
     get:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      description: Valid date or not
+      responses:
+        '200':
+          description: Is it a valid date or not
+          content:
+            application/json:
+              schema:
+                type: boolean
       parameters:
         - in: "body"
           name: date
@@ -97,22 +87,16 @@ paths:
           schema:
             type: string
             example: "2020-01-01"
-      responses:
-        "200":
-          description: "Info if valid date or not"
-          schema:
-            type: object
-            properties:
-              checkdate:
-                type: boolean
-                description: "Valid date or not"
-
   /weekday:
     get:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      description: Get the weekday
+      responses:
+        '200':
+          description: Get the weekday
+          content:
+            application/json:
+              schema:
+                type: integer
       parameters:
         - in: "body"
           name: date
@@ -121,12 +105,3 @@ paths:
           schema:
             type: integer
             example: "2020-01-01"
-      responses:
-        "200":
-          description: "Number of week day"
-          schema:
-            type: object
-            properties:
-              weekday:
-                type: integer
-                description: "Number of week day"
