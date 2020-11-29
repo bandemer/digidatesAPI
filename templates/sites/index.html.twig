@@ -4,23 +4,35 @@
 
     <div class="columns">
       <div class="column py-0">
-          <h1 class="is-size-1">DigiDates.de</h1>
+          <h1 class="is-size-1">
+              DigiDates.de
+          </h1>
       </div>
       <div class="column has-text-right py-4">
-          <a class="button" href="https://github.com/users/bandemernet/digidatesAPI">
-              digidatesAPI on github.com
+          <a class="button" href="https://github.com/users/bandemer/digidatesAPI">
+              <img src="/assets/github.svg" alt="GitHub Icon" height="22" width="22" class="mr-2"> Get source on GitHub
           </a>
       </div>
     </div>
     <hr>
     <p>{{ message }}</p>
 
-
-
-    <div class="field my-4">
-        <label class="label">Aktuelle Unix-Zeit</label>
-        <div class="control">
-            <input class="input" type="text" id="unixtime">
+    <div class="columns my-5">
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">Unix Time:</label>
+                <div class="control">
+                    <input class="input is-medium" type="text" id="unixtime">
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">Human Time:</label>
+                <div class="control">
+                    <input class="input is-medium" type="text" id="humantime">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -29,12 +41,21 @@
 {% block javascripts %}
 <script>
 
-    const userAction = async () => {
+    const callApi = async () => {
         const response = await fetch('https://digidates.de/api/v1/unixtime');
-        const myJson = await response.json(); //extract JSON from the http response
-        console.log(myJson);
+        const json = await response.json();
+        document.getElementById('unixtime').value = json.time;
+
+        const datum = new Date(json.time * 1000);
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+
+        document.getElementById('humantime').value =
+            datum.toLocaleDateString('de-DE', options);
+
     }
 
+
+    callApi();
 
 </script>
 
