@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}
+    {% include 'buttonbar.html.twig' %}
+
+    <p>{{ message }}</p>
+
+    <div class="columns my-5">
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">Start:</label>
+                <div class="control">
+                    <input class="input is-medium" type="text" id="start">
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">Ende:</label>
+                <div class="control">
+                    <input class="input is-medium" type="text" id="end">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-4">
+        <h3>Fortschritt:</h3>
+
+        <progress class="progress is-info is-medium" value="15" max="100">15%</progress>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+
+    const callApi = async () => {
+
+
+        const response = await fetch('https://digidates.de/api/v1/progress');
+        const json = await response.json();
+
+        document.getElementById('week').value = json.week;
+
+        const datum = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric'};
+
+        document.getElementById('humantime').value =
+            datum.toLocaleDateString('de-DE', options);
+
+    }
+
+
+    callApi();
+
+</script>
+
+{% endblock %}

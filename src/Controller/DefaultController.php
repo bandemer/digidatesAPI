@@ -19,6 +19,31 @@ class DefaultController extends AbstractController
         return $this->render('sites/index.html.twig', ['message' => $message]);
     }
 
+    /**
+     * Week
+     * @Route("/week", name="week")
+     */
+    public function week()
+    {
+        $message = 'Kalenderwoche ermitteln';
+
+        return $this->render('sites/week.html.twig', ['message' => $message]);
+    }
+
+
+    /**
+     * Fortschritt
+     *
+     * @Route("/progress", name="progress")
+     */
+    public function progress()
+    {
+        $message = 'Fortschritt';
+
+        return $this->render('sites/progress.html.twig', ['message' => $message]);
+    }
+
+
 
 
 }

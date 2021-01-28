@@ -325,11 +325,8 @@
     "symfony/http-kernel": {
         "version": "v5.0.8"
     },
-    "symfony/mime": {
-        "version": "v5.0.8"
-    },
-    "symfony/polyfill-intl-idn": {
-        "version": "v1.15.0"
+    "symfony/polyfill-intl-grapheme": {
+        "version": "v1.22.0"
     },
     "symfony/polyfill-intl-normalizer": {
         "version": "v1.18.0"
@@ -359,6 +356,9 @@
     },
     "symfony/service-contracts": {
         "version": "v2.0.1"
+    },
+    "symfony/string": {
+        "version": "v5.1.10"
     },
     "symfony/translation-contracts": {
         "version": "v2.3.0"

@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Service\DateAndTimeService;
+use Cassandra\Date;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -115,6 +116,21 @@ class V1Controller extends AbstractController
                 ['Access-Control-Allow-Origin' => '*']
             );
         }
+    }
+
+    /**
+     * @param DateAndTimeService $dts
+     * @param string $date
+     * @return JsonResponse
+     * @Route("/api/v1/progress/{start}/{end}", name="weekday", methods={"GET"})
+*/
+    public function progress(DateAndTimeService $dts, $start, $end = null)
+    {
+        return $this->json(
+            ['float' => 0.5, 'percent' => 50],
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 
 }
