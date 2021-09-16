@@ -123,9 +123,11 @@ class V1Controller extends AbstractController
      * @param string $date
      * @return JsonResponse
      * @Route("/api/v1/progress/{start}/{end}", name="weekday", methods={"GET"})
-*/
+     */
     public function progress(DateAndTimeService $dts, $start, $end = null)
     {
+
+
         return $this->json(
             ['float' => 0.5, 'percent' => 50],
             200,

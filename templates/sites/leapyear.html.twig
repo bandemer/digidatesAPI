@@ -13,21 +13,20 @@
         <p>{{ data.message }} <a class="ml-1 button is-small is-outlined is-rounded" href="{{ data.link }}" target="_blank" rel="noreferrer noopener">Mehr dazu</a></p>
     </div>
 
-
     <div class="columns my-5">
         <div class="column">
             <div class="field">
-                <label class="label is-medium">Kalenderwoche (KW):</label>
+                <label class="label is-medium">Jahr:</label>
                 <div class="control">
-                    <input class="input is-medium" type="text" id="week">
+                    <input type="number" min="0" step="1" class="input is-medium" id="year" value="2021">
                 </div>
             </div>
         </div>
         <div class="column">
             <div class="field">
-                <label class="label is-medium">Datum:</label>
+                <label class="label is-medium">Schaltjahr:</label>
                 <div class="control">
-                    <input class="input is-medium" type="text" id="humantime">
+                    <input class="input is-medium" type="text" id="leapyear">
                 </div>
             </div>
         </div>
@@ -39,18 +38,16 @@
 <script>
 
     const callApi = async () => {
-        const response = await fetch('https://digidates.de/api/v1/week');
+
+        const year = document.getElementById('year').value;
+        const response = await fetch('https://digidates.de/api/v1/leapyear/' + year);
         const json = await response.json();
-        document.getElementById('week').value = json.week;
-
-        const datum = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric'};
-
-        document.getElementById('humantime').value =
-            datum.toLocaleDateString('de-DE', options);
-
+        document.getElementById('leapyear').value = json.leapyear;
     }
 
+    document.getElementById('year').addEventListener('change', function () {
+        callApi();
+    });
 
     callApi();
 

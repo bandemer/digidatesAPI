@@ -3,11 +3,26 @@
 {% block body %}
 
     {% include 'header.html.twig' %}
+
+    <p>Willkommen bei DigiDates.de - Deinem API-Provider für Zeit- und Datumsberechnungen.</p>
+
     {% include 'buttonbar.html.twig' %}
 
-    <p>{{ message }}</p>
+    <div class="mt-6">
+        <h2 class="is-size-3 mb-2">{{ data.header }}</h2>
+        <p>{{ data.message }} <a class="ml-1 button is-small is-outlined is-rounded" href="{{ data.link }}" target="_blank" rel="noreferrer noopener">Mehr dazu</a></p>
+    </div>
+
 
     <div class="columns my-5">
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">Datum:</label>
+                <div class="control">
+                    <input class="input is-medium" type="date" id="date" value="2021-01-30">
+                </div>
+            </div>
+        </div>
         <div class="column">
             <div class="field">
                 <label class="label is-medium">Kalenderwoche (KW):</label>
@@ -16,14 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="field">
-                <label class="label is-medium">Datum:</label>
-                <div class="control">
-                    <input class="input is-medium" type="text" id="humantime">
-                </div>
-            </div>
-        </div>
+
     </div>
 
 {% endblock %}
@@ -32,18 +40,18 @@
 <script>
 
     const callApi = async () => {
-        const response = await fetch('https://digidates.de/api/v1/week');
+
+        const date = document.getElementById('date').value;
+
+        const response = await fetch('https://digidates.de/api/v1/week/' + date);
         const json = await response.json();
         document.getElementById('week').value = json.week;
 
-        const datum = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric'};
-
-        document.getElementById('humantime').value =
-            datum.toLocaleDateString('de-DE', options);
-
     }
 
+    document.getElementById('date').addEventListener('change', function () {
+        callApi();
+    });
 
     callApi();
 

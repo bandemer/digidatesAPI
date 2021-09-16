@@ -3,16 +3,22 @@
 {% block body %}
 
     {% include 'header.html.twig' %}
+
+    <p>Willkommen bei DigiDates.de - Deinem API-Provider für Zeit- und Datumsberechnungen.</p>
+
     {% include 'buttonbar.html.twig' %}
 
-    <p>{{ message }}</p>
+    <div class="mt-6">
+        <h2 class="is-size-3 mb-2">{{ data.header }}</h2>
+        <p>{{ data.message }} {% if data.link is defined %}<a class="ml-1 button is-small is-outlined is-rounded" href="{{ data.link }}" target="_blank" rel="noreferrer noopener">Mehr dazu</a>{% endif %}</p>
+    </div>
 
     <div class="columns my-5">
         <div class="column">
             <div class="field">
                 <label class="label is-medium">Start:</label>
                 <div class="control">
-                    <input class="input is-medium" type="text" id="start">
+                    <input class="input is-medium" type="datetime-local" id="start" value="2021-01-01T00:00">
                 </div>
             </div>
         </div>
@@ -20,7 +26,7 @@
             <div class="field">
                 <label class="label is-medium">Ende:</label>
                 <div class="control">
-                    <input class="input is-medium" type="text" id="end">
+                    <input class="input is-medium" type="datetime-local" id="end" value="2022-01-01T00:00">
                 </div>
             </div>
         </div>

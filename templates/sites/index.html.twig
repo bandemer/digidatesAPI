@@ -4,9 +4,14 @@
 
     {% include 'header.html.twig' %}
 
-    <p>{{ message }}</p>
+    <p>Willkommen bei DigiDates.de - Deinem API-Provider für Zeit- und Datumsberechnungen.</p>
 
     {% include 'buttonbar.html.twig' %}
+
+    <div class="mt-6">
+        <h2 class="is-size-3 mb-2">{{ data.header }}</h2>
+        <p>{{ data.message }} <a class="ml-1 button is-small is-outlined is-rounded" href="{{ data.link }}" target="_blank" rel="noreferrer noopener">Mehr dazu</a></p>
+    </div>
 
     <div class="columns my-5">
         <div class="column">
@@ -21,7 +26,7 @@
             <div class="field">
                 <label class="label is-medium">Unix Time:</label>
                 <div class="control">
-                    <input class="input is-medium" type="text" id="unixtime">
+                    <input class="input is-medium"  type="number" min="0" step="1" id="unixtime">
                 </div>
             </div>
         </div>
