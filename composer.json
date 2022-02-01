@@ -9,7 +9,7 @@
         "symfony/console": "5.2.*",
         "symfony/dotenv": "5.2.*",
         "symfony/flex": "^1.11",
-        "symfony/framework-bundle": "5.2.*",
+        "symfony/framework-bundle": "5.3.*",
         "symfony/twig-bundle": "5.2.*",
         "symfony/yaml": "5.2.*",
         "twig/extra-bundle": "^3.2",
