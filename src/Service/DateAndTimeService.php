@@ -15,7 +15,6 @@ class DateAndTimeService
     {
         $unixTime = time();
         if ($timestamp != '') {
-
             $unixTime = strtotime($timestamp);
         }
 
