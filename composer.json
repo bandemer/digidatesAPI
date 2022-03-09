@@ -5,28 +5,27 @@
         "php": "^8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "sensio/framework-extra-bundle": "^5.5",
-        "symfony/console": "5.2.*",
-        "symfony/dotenv": "5.2.*",
-        "symfony/flex": "^1.11",
-        "symfony/framework-bundle": "5.2.*",
-        "symfony/twig-bundle": "5.2.*",
-        "symfony/yaml": "5.2.*",
+        "sensio/framework-extra-bundle": "^6.1",
+        "symfony/console": "5.4.*",
+        "symfony/dotenv": "5.4.*",
+        "symfony/flex": "^1.17|^2",
+        "symfony/framework-bundle": "5.4.*",
+        "symfony/twig-bundle": "5.4.*",
+        "symfony/yaml": "5.4.*",
         "twig/extra-bundle": "^3.2",
         "twig/twig": "^3.2"
     },
     "require-dev": {
-        "codeception/codeception": "^4.1",
-        "codeception/module-asserts": "^1.2",
-        "codeception/module-phpbrowser": "^1.0",
-        "codeception/module-rest": "^1.2",
-        "codeception/module-symfony": "^1.1"
+        "codeception/codeception": "^4.1"
     },
     "config": {
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/flex": true
+        }
     },
     "autoload": {
         "psr-4": {
@@ -65,7 +64,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.2.*"
+            "require": "5.4.*"
         }
     }
 }
