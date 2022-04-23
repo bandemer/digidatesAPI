@@ -43,7 +43,7 @@
 
         const date = document.getElementById('date').value;
 
-        const response = await fetch('https://digidates.de/api/v1/week/' + date);
+        const response = await fetch('/api/v1/week/' + date);
         const json = await response.json();
         document.getElementById('week').value = json.week;
 

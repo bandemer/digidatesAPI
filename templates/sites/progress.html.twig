@@ -47,7 +47,7 @@
     const callApi = async () => {
 
 
-        const response = await fetch('https://digidates.de/api/v1/progress');
+        const response = await fetch('/api/v1/progress');
         const json = await response.json();
 
         document.getElementById('week').value = json.week;

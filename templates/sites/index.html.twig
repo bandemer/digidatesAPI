@@ -40,7 +40,7 @@
 
     async function getUnixTime(ts = null)
     {
-        let url = 'https://digidates.de/api/v1/unixtime';
+        let url = '/api/v1/unixtime';
         if (ts) {
             url += '/' + ts;
         }
