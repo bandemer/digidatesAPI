@@ -70,7 +70,6 @@ class DefaultController extends AbstractController
         return $this->render('sites/leapyear.html.twig', ['data' => $data]);
     }
 
-
     /**
      * Fortschritt
      *
@@ -80,14 +79,12 @@ class DefaultController extends AbstractController
     {
         $data = [
             'header' => 'Fortschritt',
-            'message' => 'Die Differenz in Sekunden',
-
+            'message' => 'Der aktuell vergangene Zeitraum von Anfang bis Ende in Prozent.',
+            'defaultstartdate' => date('Y').'-01-01',
+            'defaultenddate' => date('Y').'-12-31',
         ];
 
         return $this->render('sites/progress.html.twig', ['data' => $data]);
     }
-
-
-
 
 }

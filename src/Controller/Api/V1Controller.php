@@ -107,13 +107,12 @@ class V1Controller extends AbstractController
      * Progress
      * @Route("/api/v1/progress/{start}/{end}", methods={"GET"})
      */
-    public function progress(DateAndTimeService $dts, $start, $end = null): JsonResponse
+    public function progress(DateAndTimeService $dts, $start, $end): JsonResponse
     {
-
+        $val = $dts->progress($start, $end);
 
         return $this->json(
-            ['float' => 0.5, 'percent' => 50],
-            200,
+            ['float' => $val, 'percent' => round($val / 100 * 100)], 200,
             ['Access-Control-Allow-Origin' => '*']
         );
     }

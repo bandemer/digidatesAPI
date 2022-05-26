@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use function PHPUnit\Framework\isNull;
+
 class DateAndTimeService
 {
 
@@ -104,5 +106,20 @@ class DateAndTimeService
         }
 
         return $ts;
+    }
+
+    /**
+     * @param string $start
+     * @param string $end
+     * @return float|int
+     */
+    public function progress(string $start, string $end)
+    {
+        $startTs = strtotime($start);
+        $endTs = strtotime($end);
+
+        $nowTs = time();
+
+        return 100 / ($endTs - $startTs) * ($nowTs - $startTs);
     }
 }

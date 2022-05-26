@@ -18,7 +18,7 @@
             <div class="field">
                 <label class="label is-medium">Start:</label>
                 <div class="control">
-                    <input class="input is-medium" type="datetime-local" id="start" value="2021-01-01T00:00">
+                    <input class="input is-medium" type="date" id="start" value="{{ data.defaultstartdate }}">
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="field">
                 <label class="label is-medium">Ende:</label>
                 <div class="control">
-                    <input class="input is-medium" type="datetime-local" id="end" value="2022-01-01T00:00">
+                    <input class="input is-medium" type="date" id="end" value="{{ data.defaultenddate }}">
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
     <div class="my-4">
         <h3>Fortschritt:</h3>
 
-        <progress class="progress is-info is-medium" value="15" max="100">15%</progress>
+        <progress class="progress is-info is-medium" value="0" max="100" id="progress">0%</progress>
 
     </div>
 
@@ -46,20 +46,23 @@
 
     const callApi = async () => {
 
+        const start = document.getElementById('start').value;
+        const end = document.getElementById('end').value;
 
-        const response = await fetch('/api/v1/progress');
+        const response = await fetch('/api/v1/progress/' + start + '/' + end);
         const json = await response.json();
 
-        document.getElementById('week').value = json.week;
-
-        const datum = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric'};
-
-        document.getElementById('humantime').value =
-            datum.toLocaleDateString('de-DE', options);
-
+        document.getElementById('progress').value = json.float;
+        document.getElementById('progress').innerText = json.percent+'%';
     }
 
+    document.getElementById('start').onchange = function () {
+        callApi();
+    }
+
+    document.getElementById('end').onchange = function () {
+        callApi();
+    }
 
     callApi();
 
