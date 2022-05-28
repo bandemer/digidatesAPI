@@ -6,15 +6,17 @@ use App\Service\DateAndTimeService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class V1Controller extends AbstractController
 {
     /**
      * UnixTime
-     * @Route("/api/v1/unixtime/{timestamp}", methods={"GET"})
+     * @Route("/api/v1/unixtime", methods={"GET"})
      */
-    public function unixtime(string $timestamp = ''): JsonResponse
+    public function unixtime(Request $req): JsonResponse
     {
+        $timestamp = $req->get('timestamp', '');
         $unixTime = time();
         if ($timestamp != '') {
             $unixTime = strtotime($timestamp);
@@ -28,12 +30,14 @@ class V1Controller extends AbstractController
     }
 
     /**
-     * Kalenderwoche
-     * @Route("/api/v1/week/{timestamp}")
+     * ISO week date
+     *
+     * @Route("/api/v1/week")
      */
-    public function week(DateAndTimeService $dts, string $timestamp = ''): JsonResponse
+    public function week(Request $req, DateAndTimeService $dts): JsonResponse
     {
-        $kw = $dts->week($timestamp);
+        $date = $req->get('date', '');
+        $kw = $dts->week($date);
 
         return $this->json(
             ['week' => $kw],
@@ -44,11 +48,12 @@ class V1Controller extends AbstractController
 
     /**
      * Schaltjahr
-     * @Route("/api/v1/leapyear/{timestamp}", methods={"GET"})
+     * @Route("/api/v1/leapyear", methods={"GET"})
      */
-    public function leapyear(DateAndTimeService $dts, string $timestamp = ''): JsonResponse
+    public function leapyear(Request $req, DateAndTimeService $dts): JsonResponse
     {
-        $leapYear = $dts->leapYear($timestamp);
+        $year = $req->get('year', '');
+        $leapYear = $dts->leapYear($year);
 
         return $this->json(
             ['leapyear' => $leapYear],
@@ -58,11 +63,13 @@ class V1Controller extends AbstractController
     }
 
     /**
-     * Gültiges Datum?
-     * @Route("/api/v1/checkdate/{date}", methods={"GET"})
+     * Is ist a valid Date?
+     *
+     * @Route("/api/v1/checkdate", methods={"GET"})
      */
-    public function checkdate(DateAndTimeService $dts, string $date = ''): JsonResponse
+    public function checkdate(Request $req, DateAndTimeService $dts): JsonResponse
     {
+        $date = $req->get('date', '');
         $returnBool = $dts->checkdate($date);
 
         if (is_null($returnBool)) {
@@ -81,11 +88,13 @@ class V1Controller extends AbstractController
     }
 
     /**
-     * Wochentag
-     * @Route("/api/v1/weekday/{date}", methods={"GET"})
+     * Day of Week
+     *
+     * @Route("/api/v1/weekday", methods={"GET"})
      */
-    public function weekday(DateAndTimeService $dts, string $date = ''): JsonResponse
+    public function weekday(Request $req, DateAndTimeService $dts): JsonResponse
     {
+        $date = $req->get('date', '');
         $ts = $dts->weekday($date);
 
         if ($ts > 0) {
@@ -104,11 +113,14 @@ class V1Controller extends AbstractController
     }
 
     /**
-     * Progress
-     * @Route("/api/v1/progress/{start}/{end}", methods={"GET"})
+     * reached progress from one timestamp to another
+     *
+     * @Route("/api/v1/progress", methods={"GET"})
      */
-    public function progress(DateAndTimeService $dts, $start, $end): JsonResponse
+    public function progress(Request $req, DateAndTimeService $dts): JsonResponse
     {
+        $start = $req->get('start', '');
+        $end = $req->get('end', '');
         $val = $dts->progress($start, $end);
 
         return $this->json(

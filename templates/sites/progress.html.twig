@@ -49,7 +49,7 @@
         const start = document.getElementById('start').value;
         const end = document.getElementById('end').value;
 
-        const response = await fetch('/api/v1/progress/' + start + '/' + end);
+        const response = await fetch('/api/v1/progress?start=' + start + '&end=' + end);
         const json = await response.json();
 
         document.getElementById('progress').value = json.float;

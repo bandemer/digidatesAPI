@@ -42,7 +42,7 @@
     {
         let url = '/api/v1/unixtime';
         if (ts) {
-            url += '/' + ts;
+            url += '?timestamp=' + ts;
         }
         const response = await fetch(url);
         const json = await response.json();

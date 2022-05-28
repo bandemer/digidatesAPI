@@ -42,7 +42,7 @@
 
         const date = document.getElementById('date').value;
 
-        const response = await fetch('/api/v1/checkdate/' + date );
+        const response = await fetch('/api/v1/checkdate?date=' + date );
         const json = await response.json();
         document.getElementById('checkdate').value = json.checkdate;
 

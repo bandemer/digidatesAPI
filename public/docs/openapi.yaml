@@ -24,15 +24,14 @@ paths:
           content:
             application/json:
               schema:
-                type: int
+                type: integer
       parameters:
-      - in: "body"
-        name: "timestamp"
-        description: "Timestamp to convert"
-        required: false
-        schema:
-          type: string
-          example: "1970-01-01 00:00:01"
+        - in: "query"
+          name: "timestamp"
+          description: "Timestamp to convert"
+          schema:
+            type: string
+            example: "1970-01-01 00:00:01"
   /week:
     get:
       description: Returns week number
@@ -42,15 +41,14 @@ paths:
           content:
             application/json:
               schema:
-                type: int
+                type: integer
       parameters:
-      - in: "body"
-        name: "timestamp"
-        description: "Time to get week of"
-        required: false
-        schema:
-          type: string
-          example: "1970-01-01 00:00:01"
+        - in: "query"
+          name: "timestamp"
+          description: "Time to get week of"
+          schema:
+            type: string
+            example: "1970-01-01 00:00:01"
   /leapyear:
     get:
       description: Leap year or not
@@ -62,10 +60,9 @@ paths:
               schema:
                 type: boolean
       parameters:
-        - in: "body"
+        - in: "query"
           name: "timestamp"
           description: "Time to check if in leap year or not"
-          required: false
           schema:
             type: string
             example: "1970-01-01 00:00:01"
@@ -80,10 +77,9 @@ paths:
               schema:
                 type: boolean
       parameters:
-        - in: "body"
+        - in: "query"
           name: date
           description: "Date to check if valid"
-          required: true
           schema:
             type: string
             example: "2020-01-01"
@@ -98,10 +94,37 @@ paths:
               schema:
                 type: integer
       parameters:
-        - in: "body"
+        - in: "query"
           name: date
           description: "Date of which to get week day"
-          required: false
           schema:
             type: integer
             example: "2020-01-01"
+  /progress:
+    get:
+      description: Progress made from one timestamp to another
+      responses:
+        '200':
+          description: Get the progress
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  float:
+                    type: number
+                  percent:
+                    type: integer
+      parameters:
+        - in: "query"
+          name: start
+          description: Timestamp for start of period
+          schema:
+            type: string
+            example: "2022-01-01"
+        - in: "query"
+          name: end
+          description: Timestamp for end of period
+          schema:
+            type: string
+            example: "2022-12-31"
