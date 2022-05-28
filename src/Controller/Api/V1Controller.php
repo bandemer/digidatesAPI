@@ -124,7 +124,7 @@ class V1Controller extends AbstractController
         $val = $dts->progress($start, $end);
 
         return $this->json(
-            ['float' => $val, 'percent' => round($val / 100 * 100)], 200,
+            ['float' => $val / 100, 'percent' => round($val)], 200,
             ['Access-Control-Allow-Origin' => '*']
         );
     }

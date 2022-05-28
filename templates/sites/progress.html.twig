@@ -32,10 +32,14 @@
         </div>
     </div>
 
-    <div class="my-4">
-        <h3>Fortschritt:</h3>
+    <div class="my-4 content">
 
-        <progress class="progress is-info is-medium" value="0" max="100" id="progress">0%</progress>
+        <label class="label is-medium">Fortschritt:</label>
+        <div class="control">
+            <input class="input is-medium" type="text" id="progressvalue">
+        </div>
+
+        <progress class="progress is-info is-medium my-5" value="0" max="100" id="progress">0%</progress>
 
     </div>
 
@@ -52,8 +56,10 @@
         const response = await fetch('/api/v1/progress?start=' + start + '&end=' + end);
         const json = await response.json();
 
-        document.getElementById('progress').value = json.float;
+        document.getElementById('progress').value = json.percent;
         document.getElementById('progress').innerText = json.percent+'%';
+
+        document.getElementById('progressvalue').value = json.float;
     }
 
     document.getElementById('start').onchange = function () {
