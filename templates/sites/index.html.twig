@@ -55,14 +55,6 @@
         document.getElementById('humantime').value = date.toUTCString();
     };
 
-    window.onload = function()
-    {
-        getUnixTime().then(timestamp => {
-            document.getElementById('unixtime').value = timestamp;
-            setHumanTime(timestamp);
-        })
-    }
-
     document.getElementById('humantime').onchange = function ()
     {
         getUnixTime(this.value).then(timestamp => {
@@ -75,6 +67,11 @@
     {
         setHumanTime(this.value);
     }
+
+    getUnixTime().then(timestamp => {
+        document.getElementById('unixtime').value = timestamp;
+        setHumanTime(timestamp);
+    })
 </script>
 
 {% endblock %}
