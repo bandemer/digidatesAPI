@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}
+
+    <p>Willkommen bei DigiDates.de - Deinem API-Provider für Zeit- und Datumsberechnungen.</p>
+
+    {% include 'buttonbar.html.twig' %}
+
+    <div class="mt-6">
+        <h2 class="is-size-3 mb-2">{{ data.header }}</h2>
+        <p>{{ data.message }}</p>
+    </div>
+
+
+    <div class="columns mt-5">
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">Datum:</label>
+                <div class="control">
+                    <input class="input is-medium" type="date" id="date" value="1970-01-01">
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">Alter:</label>
+                <div class="control">
+                    <input class="input is-medium" type="text" id="age">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns mb-5">
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">Alter ausführlich:</label>
+                <div class="control">
+                    <input class="input is-medium" type="text" id="ageextended">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+
+    const callApi = async () => {
+
+        const date = document.getElementById('date').value;
+
+        const response = await fetch('/api/v1/age/' + date);
+        const json = await response.json();
+        document.getElementById('age').value = json.age + ' Jahre';
+        document.getElementById('ageextended').value = json.ageextended.years +
+            ' Jahre, ' + json.ageextended.months + ' Monate und ' +
+            json.ageextended.days + ' Tage';
+
+    }
+
+    document.getElementById('date').addEventListener('change', function () {
+        callApi();
+    });
+
+    callApi();
+
+</script>
+
+{% endblock %}

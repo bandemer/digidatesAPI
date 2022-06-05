@@ -122,4 +122,28 @@ class DateAndTimeService
 
         return 100 / ($endTs - $startTs) * ($nowTs - $startTs);
     }
+
+    /**
+     * @param string $birthday
+     * @return array
+     */
+    public function age(string $birthday)
+    {
+        $rA = [
+            'age' => 0,
+            'ageextended' => ['years' => 0, 'months' => 0, 'days' => 0]
+        ];
+
+        $birthdayTs = new \DateTime($birthday);
+        $today = new \DateTime('today');
+
+        if ($birthdayTs < $today) {
+
+            $rA['age'] = intval($today->diff($birthdayTs)->format('%y'));
+            $rA['ageextended']['years'] = intval($today->diff($birthdayTs)->format('%y'));
+            $rA['ageextended']['months'] = intval($today->diff($birthdayTs)->format('%m'));
+            $rA['ageextended']['days'] = intval($today->diff($birthdayTs)->format('%d'));
+        }
+        return $rA;
+    }
 }

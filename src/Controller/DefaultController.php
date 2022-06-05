@@ -71,6 +71,22 @@ class DefaultController extends AbstractController
     }
 
     /**
+     * Age
+     *
+     * @Route("/age", name="age")
+     */
+    public function age()
+    {
+        $data = [
+            'header' => 'Alter',
+            'message' => 'Das Alter für ein Datum ermitteln.',
+        ];
+
+        return $this->render('sites/age.html.twig', ['data' => $data]);
+    }
+
+
+    /**
      * Fortschritt
      *
      * @Route("/progress", name="progress")

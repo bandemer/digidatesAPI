@@ -78,4 +78,80 @@ class ApiTest extends \Codeception\Test\Unit
 
         $this->tester->seeResponseEquals(json_encode(['float' => ($percent / 100), 'percent' => round($percent)]));
     }
+
+    public function testAge()
+    {
+        //Not a valid date
+        $this->tester->sendGET('/api/v1/age/2022-02-30');
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
+        $this->tester->seeResponseIsJson();
+        $this->tester->seeResponseMatchesJsonType(['error' => 'string']);
+
+        //Today should return age 0
+        $this->tester->sendGET('/api/v1/age/'.date('Y-m-d'));
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+        $this->tester->seeResponseIsJson();
+        $this->tester->seeResponseMatchesJsonType([
+            'age' => 'integer',
+            'ageextended' => [
+                'years' => 'integer',
+                'months' => 'integer',
+                'days' => 'integer',
+            ],
+        ]);
+
+        $this->tester->seeResponseEquals(json_encode([
+            'age' => 0,
+            'ageextended' => [
+                'years' => 0,
+                'months' => 0,
+                'days' => 0,
+            ]
+        ]));
+
+        //One Year should return 1 Year
+        $this->tester->sendGET('/api/v1/age/'.date('Y-m-d', mktime(0, 0, 0, intval(date('n')), intval(date('j')), intval(date('Y'))-1)));
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+        $this->tester->seeResponseIsJson();
+        $this->tester->seeResponseMatchesJsonType([
+            'age' => 'integer',
+            'ageextended' => [
+                'years' => 'integer',
+                'months' => 'integer',
+                'days' => 'integer',
+            ],
+        ]);
+
+        $this->tester->seeResponseEquals(json_encode([
+            'age' => 1,
+            'ageextended' => [
+                'years' => 1,
+                'months' => 0,
+                'days' => 0,
+            ]
+        ]));
+
+        //One year, two months and 3 days
+        $this->tester->sendGET('/api/v1/age/'.date('Y-m-d', mktime(0, 0, 0, intval(date('n'))-2, intval(date('j'))-3, intval(date('Y'))-1)));
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+        $this->tester->seeResponseIsJson();
+        $this->tester->seeResponseMatchesJsonType([
+            'age' => 'integer',
+            'ageextended' => [
+                'years' => 'integer',
+                'months' => 'integer',
+                'days' => 'integer',
+            ],
+        ]);
+
+        $this->tester->seeResponseEquals(json_encode([
+            'age' => 1,
+            'ageextended' => [
+                'years' => 1,
+                'months' => 2,
+                'days' => 3,
+            ]
+        ]));
+    }
+
 }

@@ -129,4 +129,31 @@ class V1Controller extends AbstractController
         );
     }
 
+    /**
+     * Get age for birthday
+     *
+     * @Route("/api/v1/age/{birthday}", methods={"GET"})
+     */
+    public function age(string $birthday, Request $req, DateAndTimeService $dts): JsonResponse
+    {
+        $response = [];
+        $httpCode = 200;
+
+        $matches = [];
+        if (preg_match('/^([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2})$/', $birthday, $matches) AND
+            checkdate($matches[2], $matches[3], $matches[1])) {
+
+            $response = $dts->age($birthday);
+
+        } else {
+
+            $response = ['error' => 'Give birthday is not a valid date'];
+            $httpCode = 400;
+        }
+
+        return $this->json($response, $httpCode,
+            ['Access-Control-Allow-Origin' => '*']
+        );
+    }
+
 }
