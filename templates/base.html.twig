@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% block title %}DigiDates.de{% endblock %}</title>
+<title>{{ data.meta_title }}</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/brands.min.css">
 {% block stylesheets %}{% endblock %}
@@ -22,5 +22,25 @@
     </div>
 </footer>
 {% block javascripts %}{% endblock %}
+<script>
+    (function() {
+        window.onload = function () {
+            let sw = 0;
+            let sh = 0;
+            if (window.screen !== undefined) {
+                sw = window.screen.width;
+                sh = window.screen.height;
+            }
+            let httpRequest = new XMLHttpRequest();
+            if (!httpRequest) {
+                return false;
+            }
+            httpRequest.open('GET', '/st?pu='+
+                encodeURIComponent(window.location.href)+
+                '&pt={{ data.meta_title|url_encode }}&sw='+sw+'&sh='+sh);
+            httpRequest.send();
+        }
+    })();
+</script>
 </body>
 </html>

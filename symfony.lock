@@ -83,6 +83,9 @@
     "justinrainbow/json-schema": {
         "version": "5.2.11"
     },
+    "matomo/matomo-php-tracker": {
+        "version": "3.0.4"
+    },
     "myclabs/deep-copy": {
         "version": "1.11.0"
     },
