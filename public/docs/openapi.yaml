@@ -128,3 +128,33 @@ paths:
           schema:
             type: string
             example: "2022-12-31"
+  /age/{date}:
+    get:
+      description: Age of give date
+      responses:
+        '200':
+          description: Get the age
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  age:
+                    type: integer
+                  ageextended:
+                    type: object
+                    properties:
+                      years:
+                        type: integer
+                      months:
+                        type: integer
+                      days:
+                        type: integer
+      parameters:
+        - in: "path"
+          name: date
+          required: true
+          description: Date of Birthday
+          schema:
+            type: string
+            example: "1970-01-01"
