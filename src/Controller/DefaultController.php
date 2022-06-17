@@ -108,4 +108,18 @@ class DefaultController extends AbstractController
         return $this->render('sites/progress.html.twig', ['data' => $data]);
     }
 
+    /**
+     * Open API YAML file
+     *
+     * @Route("/docs/openapi.yaml", name="openapi.yaml")
+     */
+    public function openapiyaml()
+    {
+        $output = file_get_contents('../docs/openapi.yaml');
+        $r = new Response($output);
+        $r->headers->set('Content-Type', 'application/x-yaml');
+        $r->headers->set('Access-Control-Allow-Origin', '*');
+        return new Response($output);
+    }
+
 }
