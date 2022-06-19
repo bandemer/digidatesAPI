@@ -1,7 +1,7 @@
 openapi: "3.0.3"
 info:
   title: "digidatesAPI"
-  description: "API for time and date functions"
+  description: "REST API for time and date functions"
   version: "1.0"
   contact:
     email: "webmaster@digidates.de"
@@ -9,11 +9,8 @@ info:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 servers:
-  - url: "https://digidates.de/api/{basePath}"
-    description: "Live Server"
-    variables:
-      basePath:
-        default: v1
+  - url: "https://digidates.de/api/v1"
+    description: Live Server
 paths:
   /unixtime:
     get:
