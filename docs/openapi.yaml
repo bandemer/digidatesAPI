@@ -23,8 +23,8 @@ paths:
               schema:
                 type: integer
       parameters:
-        - in: "query"
-          name: "timestamp"
+        - in: query
+          name: timestamp
           description: "Timestamp to convert"
           schema:
             type: string
@@ -40,12 +40,12 @@ paths:
               schema:
                 type: integer
       parameters:
-        - in: "query"
-          name: "timestamp"
-          description: "Time to get week of"
+        - in: query
+          name: date
+          description: "Date to get week of"
           schema:
             type: string
-            example: "1970-01-01 00:00:01"
+            example: "1970-01-01"
   /leapyear:
     get:
       description: Leap year or not
@@ -57,12 +57,12 @@ paths:
               schema:
                 type: boolean
       parameters:
-        - in: "query"
-          name: "timestamp"
-          description: "Time to check if in leap year or not"
+        - in: query
+          name: year
+          description: "Is given year a leap year or not"
           schema:
             type: string
-            example: "1970-01-01 00:00:01"
+            example: "1970"
   /checkdate:
     get:
       description: Valid date or not
@@ -74,7 +74,7 @@ paths:
               schema:
                 type: boolean
       parameters:
-        - in: "query"
+        - in: query
           name: date
           description: "Date to check if valid"
           schema:
@@ -91,7 +91,7 @@ paths:
               schema:
                 type: integer
       parameters:
-        - in: "query"
+        - in: query
           name: date
           description: "Date of which to get week day"
           schema:
@@ -113,13 +113,13 @@ paths:
                   percent:
                     type: integer
       parameters:
-        - in: "query"
+        - in: query
           name: start
           description: Timestamp for start of period
           schema:
             type: string
             example: "2022-01-01"
-        - in: "query"
+        - in: query
           name: end
           description: Timestamp for end of period
           schema:
@@ -148,7 +148,7 @@ paths:
                       days:
                         type: integer
       parameters:
-        - in: "path"
+        - in: path
           name: date
           required: true
           description: Date of Birthday
