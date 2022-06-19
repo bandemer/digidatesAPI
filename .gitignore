@@ -12,3 +12,6 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+/templates/sites/datenschutz.html.twig
+/templates/sites/impressum.html.twig

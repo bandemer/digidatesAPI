@@ -15,7 +15,9 @@ class DefaultController extends AbstractController
     public function index()
     {
         $data = [
+            'meta_robots' => 'index,follow',
             'meta_title' => 'DigiDates.de - API für Datums- und Zeit-Funktionen',
+            'meta_desc' => 'Kostenlose REST API für Datums- und Zeitfunktionen.',
             'header' => 'Unix-Time',
             'message' => 'Die Unix-Time gibt die Anzahl der Sekunden seit dem 1.1.1970 00:00:00 UTC an.',
             'link' => 'https://de.wikipedia.org/wiki/Unixzeit',
@@ -32,7 +34,9 @@ class DefaultController extends AbstractController
     public function week()
     {
         $data = [
+            'meta_robots' => 'index,follow',
             'meta_title' => 'Kalenderwoche ermitteln',
+            'meta_desc' => '',
             'header' => 'Kalenderwoche',
             'message' => 'Die Kalenderwoche definiert nach ISO 8601. KW1 eines Jahres ist diejenige, die den ersten Donnerstag enthält.',
             'link' => 'https://de.wikipedia.org/wiki/Woche#Z.C3.A4hlweise_nach_ISO_8601',
@@ -49,7 +53,9 @@ class DefaultController extends AbstractController
     public function checkdate()
     {
         $data = [
+            'meta_robots' => 'index,follow',
             'meta_title' => 'Prüfen ob ein Datum gültig ist',
+            'meta_desc' => '',
             'header' => 'Gültiges Datum',
             'message' => 'Prüft, ob das angegebene Datum gültig ist.',
         ];
@@ -65,7 +71,9 @@ class DefaultController extends AbstractController
     public function leapyear()
     {
         $data = [
+            'meta_robots' => 'index,follow',
             'meta_title' => 'Ist es ein Schaltjahr oder nicht?',
+            'meta_desc' => '',
             'header' => 'Schaltjahr',
             'message' => 'Ein Schaltjahr ist ein Jahr, das im Unterschied zum Gemeinjahr einen zusätzlichen Schalttag am 29.2. enthält.',
             'link' => 'https://de.wikipedia.org/wiki/Schaltjahr',
@@ -82,9 +90,11 @@ class DefaultController extends AbstractController
     public function age()
     {
         $data = [
+            'meta_robots' => 'index,follow',
             'meta_title' => 'Das Alter ermitteln',
+            'meta_desc' => '',
             'header' => 'Alter',
-            'message' => 'Das Alter für ein Datum ermitteln.',
+            'message' => 'Das Alter für ein gegebenes Datum ermitteln.',
         ];
 
         return $this->render('sites/age.html.twig', ['data' => $data]);
@@ -98,7 +108,9 @@ class DefaultController extends AbstractController
     public function progress()
     {
         $data = [
+            'meta_robots' => 'index,follow',
             'meta_title' => 'Wie ist der Fortschritt',
+            'meta_desc' => '',
             'header' => 'Fortschritt',
             'message' => 'Der aktuell vergangene Zeitraum von Anfang bis Ende in Prozent.',
             'defaultstartdate' => date('Y').'-01-01',
@@ -122,4 +134,35 @@ class DefaultController extends AbstractController
         return new Response($output);
     }
 
+    /**
+     * Datenschutz
+     *
+     * @Route("/datenschutz.html", name="datenschutz")
+     */
+    public function datenschutz()
+    {
+        $data = [
+            'meta_robots' => 'noindex,follow',
+            'meta_title' => 'Datenschutz',
+            'meta_desc' => '',
+        ];
+
+        return $this->render('sites/datenschutz.html.twig', ['data' => $data]);
+    }
+
+    /**
+     * Impressum
+     *
+     * @Route("/impressum.html", name="impressum")
+     */
+    public function impressum()
+    {
+        $data = [
+            'meta_robots' => 'noindex,follow',
+            'meta_title' => 'Impressum',
+            'meta_desc' => '',
+        ];
+
+        return $this->render('sites/impressum.html.twig', ['data' => $data]);
+    }
 }

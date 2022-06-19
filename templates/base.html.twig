@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="{{ data.meta_robots }}">
 <title>{{ data.meta_title }}</title>
+<meta name="description" content="{{ data.meta_desc }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/brands.min.css">
 {% block stylesheets %}{% endblock %}
@@ -16,9 +18,11 @@
 </section>
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>
-            Made by <a href="https://bandemer.dev" class="has-text-dark">bandemer.dev</a>
-        </p>
+
+        <a class="m-2 has-text-dark" href="{{ url('impressum') }}">Impressum</a>
+        <a class="m-2 has-text-dark" href="{{ url('datenschutz') }}">Datenschutz</a>
+        <span class="m-2">Made by <a href="https://bandemer.dev" class="has-text-dark">bandemer.dev</a></span>
+
     </div>
 </footer>
 {% block javascripts %}{% endblock %}
@@ -42,7 +46,6 @@
     }
 })();
 </script>
-
 
 </body>
 </html>
