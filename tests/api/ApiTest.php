@@ -24,6 +24,25 @@ class ApiTest extends \Codeception\Test\Unit
         $this->tester->seeResponseIsJson();
         $this->tester->seeResponseMatchesJsonType(['time' => 'integer']);
         $this->tester->seeResponseEquals(json_encode(['time' => time()]));
+
+        $this->tester->sendGET('/api/v1/unixtime?timestamp=Sat, 01 Jan 2022 00:00:00');
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+        $this->tester->seeResponseIsJson();
+        $this->tester->seeResponseMatchesJsonType(['time' => 'integer']);
+        $this->tester->seeResponseEquals(json_encode(['time' => 1640991600]));
+
+        $this->tester->sendGET('/api/v1/unixtime?timestamp=2022-01-01 00:00:00');
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+        $this->tester->seeResponseIsJson();
+        $this->tester->seeResponseMatchesJsonType(['time' => 'integer']);
+        $this->tester->seeResponseEquals(json_encode(['time' => 1640991600]));
+
+        $this->tester->sendGET('/api/v1/unixtime?timestamp=foo');
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
+        $this->tester->seeResponseIsJson();
+        $this->tester->seeResponseMatchesJsonType(['error' => 'string']);
+
+
     }
 
     public function testWeek()

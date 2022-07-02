@@ -20,7 +20,7 @@ class V1Controller extends AbstractController
         $timestamp = $req->get('timestamp', '');
 
         $response = ['time' => time()];
-        $code = 200;
+        $httpCode = 200;
 
         if ($timestamp != '') {
 
@@ -33,7 +33,7 @@ class V1Controller extends AbstractController
             //UTC-Timestamp
             if (preg_match("/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun),".
                 "\s(\d{2})\s(".implode('|', array_keys($months)).")".
-                "\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})( GMT)?$/",
+                "\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})( UTC)?$/",
                 $timestamp, $m)) {
 
                 $response['time'] = mktime($m[5], $m[6], $m[7], $months[$m[3]],
@@ -50,12 +50,12 @@ class V1Controller extends AbstractController
 
             //Unsupported Timestamp Format
             } else {
-                $code = 500;
+                $httpCode = 400;
                 $response = ['error' => 'Error: Unsupported timestamp format'];
             }
         }
 
-        return $this->json($response, $code,
+        return $this->json($response, $httpCode,
             ['Access-Control-Allow-Origin' => '*']
         );
     }
@@ -106,7 +106,7 @@ class V1Controller extends AbstractController
         if (is_null($returnBool)) {
             return $this->json(
                 'Bad Request',
-                500,
+                400,
                 ['Access-Control-Allow-Origin' => '*']
             );
         }
@@ -137,7 +137,7 @@ class V1Controller extends AbstractController
             );
         } else {
             return $this->json('Bad Request',
-                500,
+                400,
                 ['Access-Control-Allow-Origin' => '*']
             );
         }
