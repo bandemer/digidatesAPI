@@ -16,15 +16,46 @@ class V1Controller extends AbstractController
      */
     public function unixtime(Request $req): JsonResponse
     {
+
         $timestamp = $req->get('timestamp', '');
-        $unixTime = time();
+
+        $response = ['time' => time()];
+        $code = 200;
+
         if ($timestamp != '') {
-            $unixTime = strtotime($timestamp);
+
+            $months = ['Jan' => 1, 'Feb' => 2, 'Mar' => 3, 'Apr' => 4,
+                'May' => 5, 'Jun' => 6, 'Jul' => 7, 'Aug' => 8, 'Sep' => 9,
+                'Oct' => 10, 'Nov' => 11, 'Dec' => 12];
+
+
+            $m = [];
+            //UTC-Timestamp
+            if (preg_match("/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun),".
+                "\s(\d{2})\s(".implode('|', array_keys($months)).")".
+                "\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})( GMT)?$/",
+                $timestamp, $m)) {
+
+                $response['time'] = mktime($m[5], $m[6], $m[7], $months[$m[3]],
+                    $m[2], $m[4]);
+            }
+
+            //YYYY-MM-DD HH:II:SS
+            elseif (preg_match("/^([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2}) ".
+                "([0-9]{2,2}):([0-9]{2,2}):([0-9]{2,2})$/",
+                $timestamp, $m)) {
+
+                $response['time'] = mktime($m[4], $m[5], $m[6], $m[2],
+                    $m[3], $m[1]);
+
+            //Unsupported Timestamp Format
+            } else {
+                $code = 500;
+                $response = ['error' => 'Error: Unsupported timestamp format'];
+            }
         }
 
-        return $this->json(
-            ['time' => $unixTime],
-            200,
+        return $this->json($response, $code,
             ['Access-Control-Allow-Origin' => '*']
         );
     }
