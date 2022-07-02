@@ -22,13 +22,16 @@ paths:
             application/json:
               schema:
                 type: integer
+        '400':
+          description: "Given timestamp is not valid"
       parameters:
         - in: query
           name: timestamp
           description: "Timestamp to convert"
           schema:
             type: string
-            example: "1970-01-01 00:00:01"
+            example: ["1970-01-01 00:00:01", "Sat, 01 Jan 2022 00:00:00"]
+
   /week:
     get:
       description: Returns week number
