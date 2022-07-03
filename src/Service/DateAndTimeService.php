@@ -146,4 +146,34 @@ class DateAndTimeService
         }
         return $rA;
     }
+
+    /**
+     * CO² Level
+     *
+     * @param string $year
+     * @return float
+     */
+    public function co2(string $year)
+    {
+        $rf = 0;
+        $years = [];
+        $pattern = '/^([0-9]{4,4}),([0-9]+\.[0-9]{2,2}),.*$/';
+
+        $handle = fopen('../docs/co2_annmean_mlo.csv', "r");
+        if ($handle) {
+            while (($line = fgets($handle)) !== false) {
+                $matches = [];
+                if (preg_match($pattern, $line, $matches)) {
+                    $years[$matches[1]] = floatval($matches[2]);
+                }
+            }
+            fclose($handle);
+        }
+
+        if (array_key_exists($year, $years)) {
+            $rf = $years[$year];
+        }
+
+        return $rf;
+    }
 }

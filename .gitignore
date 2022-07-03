@@ -15,3 +15,5 @@
 
 /templates/sites/datenschutz.html.twig
 /templates/sites/impressum.html.twig
+
+/docs/co2_annmean_mlo.csv

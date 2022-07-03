@@ -178,7 +178,42 @@ class V1Controller extends AbstractController
 
         } else {
 
-            $response = ['error' => 'Give birthday is not a valid date'];
+            $response = ['error' => 'Given birthday is not a valid date'];
+            $httpCode = 400;
+        }
+
+        return $this->json($response, $httpCode,
+            ['Access-Control-Allow-Origin' => '*']
+        );
+    }
+
+    /**
+     * CO² Parts per Million
+     *
+     * https://gml.noaa.gov/ccgg/trends/data.html
+     *
+     * @Route("/api/v1/co2/{year}", methods={"GET"})
+     */
+    public function co2(string $year, Request $req, DateAndTimeService $dts): JsonResponse
+    {
+        $response = [];
+        $httpCode = 200;
+
+        if (preg_match('/^([0-9]{4,4})$/', $year)) {
+
+            $co2 = $dts->co2($year);
+            if ($co2 == 0) {
+
+                $httpCode = 400;
+                $response = ['error' => 'Error! No value for given year.'];
+
+            } else {
+                $response['co2'] = $co2;
+            }
+
+        } else {
+
+            $response = ['error' => 'Error! Not a valid year.'];
             $httpCode = 400;
         }
 

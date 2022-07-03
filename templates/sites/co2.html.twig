@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}
+
+    <p>Willkommen bei DigiDates.de - Deinem API-Provider für Zeit- und Datumsberechnungen.</p>
+
+    {% include 'buttonbar.html.twig' %}
+
+    <div class="mt-6">
+        <h2 class="is-size-3 mb-2">{{ data.header }}</h2>
+        <p>{{ data.message }} <a class="ml-1 button is-small is-outlined is-rounded" href="{{ data.link }}" target="_blank" rel="noreferrer noopener">Mehr dazu</a></p>
+    </div>
+
+    <div class="columns my-5">
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">Jahr:</label>
+                <div class="control">
+                    <input type="number" min="0" step="1" class="input is-medium" id="year" value="2021">
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">CO² Level in PPM (Parts per Million):</label>
+                <div class="control">
+                    <input class="input is-medium" type="text" id="co2">
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+
+    const callApi = async () => {
+
+        const year = document.getElementById('year').value;
+        const response = await fetch('/api/v1/co2/' + year);
+        const json = await response.json();
+        document.getElementById('co2').value = json.co2;
+    }
+
+    document.getElementById('year').addEventListener('change', function () {
+        callApi();
+    });
+
+    callApi();
+
+</script>
+
+{% endblock %}

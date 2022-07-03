@@ -83,6 +83,25 @@ class DefaultController extends AbstractController
     }
 
     /**
+     * CO²
+     *
+     * @Route("/co2", name="co2")
+     */
+    public function co2()
+    {
+        $data = [
+            'meta_robots' => 'index,follow',
+            'meta_title' => 'CO² im Jahr',
+            'meta_desc' => '',
+            'header' => 'C0² im Jahr',
+            'message' => 'Durschnittlicher Jahreswert für C0² in der Athmosphäre in PPM',
+            'link' => 'https://gml.noaa.gov/ccgg/trends/data.html',
+        ];
+
+        return $this->render('sites/co2.html.twig', ['data' => $data]);
+    }
+
+    /**
      * Age
      *
      * @Route("/age", name="age")
