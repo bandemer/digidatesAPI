@@ -18,7 +18,7 @@
             <div class="field">
                 <label class="label is-medium">Jahr:</label>
                 <div class="control">
-                    <input type="number" min="0" step="1" class="input is-medium" id="year" value="2021">
+                    <input type="number" min="{{ data.minyear }}" max="{{ data.maxyear }}" step="1" class="input is-medium" id="year" value="{{ data.defaultyear }}">
                 </div>
             </div>
         </div>

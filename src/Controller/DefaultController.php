@@ -96,6 +96,9 @@ class DefaultController extends AbstractController
             'header' => 'C0² im Jahr',
             'message' => 'Durschnittlicher Jahreswert für C0² in der Athmosphäre in PPM',
             'link' => 'https://gml.noaa.gov/ccgg/trends/data.html',
+            'minyear' => 1959,
+            'maxyear' => intval(date('Y')) -1,
+            'defaultyear' => intval(date('Y')) -1,
         ];
 
         return $this->render('sites/co2.html.twig', ['data' => $data]);
