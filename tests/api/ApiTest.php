@@ -41,8 +41,6 @@ class ApiTest extends \Codeception\Test\Unit
         $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
         $this->tester->seeResponseIsJson();
         $this->tester->seeResponseMatchesJsonType(['error' => 'string']);
-
-
     }
 
     public function testWeek()
@@ -81,6 +79,8 @@ class ApiTest extends \Codeception\Test\Unit
         $this->tester->seeResponseMatchesJsonType(['weekday' => 'integer']);
         $this->tester->seeResponseEquals(json_encode(['weekday' => intval(date('w'))]));
     }
+
+
 
     public function testProgress()
     {
@@ -171,6 +171,32 @@ class ApiTest extends \Codeception\Test\Unit
                 'days' => 3,
             ]
         ]));
+    }
+
+    public function testCo2()
+    {
+        //No data for years before 1959
+        $this->tester->sendGET('/api/v1/co2/1958');
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
+
+        //Test data of 1959
+        $this->tester->sendGET('/api/v1/co2/1959');
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+        $this->tester->seeResponseIsJson();
+        $this->tester->seeResponseMatchesJsonType(['co2' => 'float']);
+        $this->tester->seeResponseEquals(json_encode(['co2' => 315.98]));
+
+        //Data available for all years from 1959 to last year
+        for ($i = 1959; $i < intval(date('Y')); $i++) {
+            $this->tester->sendGET('/api/v1/co2/'.$i);
+            $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+            $this->tester->seeResponseIsJson();
+            $this->tester->seeResponseMatchesJsonType(['co2' => 'float']);
+        }
+
+        //No data available for current year
+        $this->tester->sendGET('/api/v1/co2/'.date('Y'));
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
     }
 
 }
