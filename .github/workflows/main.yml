@@ -43,7 +43,16 @@ jobs:
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
-     
-      - name: Run codeception tests
+      
+      - name: Get symfony binary
+        run: wget https://github.com/symfony-cli/symfony-cli/releases/download/v5.4.12/symfony-cli_linux_amd64.tar.gz
+        
+      - name: untar        
+        run: tar -xzf symfony-cli_linux_amd64.tar.gz
+
+      - name: run symfony
+        run: symfony server:start 
+      
+      - name: Run codeception tests        
         run: php vendor/bin/codecept run
 
