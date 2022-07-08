@@ -1,4 +1,4 @@
-# DigiDates API
+# DigiDates API 
 
 A REST-Api for time and date functions:
 
@@ -7,7 +7,12 @@ A REST-Api for time and date functions:
 * Leap year
 * Valid date
 * Time progress
+* Age
+* Average annual value for C0² in the atmosphere
 
 [View Demo](https://digidates.de/)
 
-[View OpenAPI specification](https://digidates.de/docs/openapi.yaml)
+[View OpenAPI specification](https://digidates.de/docs/openapi.yaml) 
+
+![Swagger Validation Result](https://validator.swagger.io/validator?url=https://raw.githubusercontent.com/bandemer/digidatesAPI/master/docs/openapi.yaml)
+ 
