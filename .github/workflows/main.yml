@@ -25,8 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Setup PHP Action
-        uses: shivammathur/setup-php@2.20.1
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, bcmath, intl, gd, exif, iconv
+          coverage: none
 
       - name: Cache Composer packages
         id: composer-cache
