@@ -24,6 +24,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "Europe/Berlin"
 
       - name: Setup PHP 8.0
         uses: shivammathur/setup-php@v2
@@ -43,6 +47,12 @@ jobs:
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
+      
+      - name: wget CO2 data
+        run: wget https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.csv
+        
+      - name: move CO2 data
+        run: mv co2_annmean_mlo.csv docs/
       
       - name: Get symfony binary
         run: wget https://github.com/symfony-cli/symfony-cli/releases/download/v5.4.12/symfony-cli_linux_amd64.tar.gz
