@@ -51,7 +51,7 @@ jobs:
         run: tar -xzf symfony-cli_linux_amd64.tar.gz
 
       - name: run symfony
-        run: symfony server:start 
+        run: ./symfony server:start 
       
       - name: Run codeception tests        
         run: php vendor/bin/codecept run
