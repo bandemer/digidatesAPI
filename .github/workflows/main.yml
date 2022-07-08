@@ -44,6 +44,6 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
      
-      - name: Codeception Action
-        uses: joelwmale/codeception-action@1.0.0
+      - name: Run codeception tests
+        run: php vendor/bin/codecept run
 
