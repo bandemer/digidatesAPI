@@ -1,4 +1,4 @@
-# DigiDates API 
+# DigiDates API ![Test workflow](https://github.com/bandemer/digidatesAPI/actions/workflows/main.yml/badge.svg) 
 
 A REST-Api for time and date functions:
 
