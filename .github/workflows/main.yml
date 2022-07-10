@@ -1,0 +1,63 @@
+# Workflow for running codeception test
+
+name: Tests
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3   
+      
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "Europe/Berlin"
+
+      - name: Output timezone
+        run: date +%Z
+        
+      - name: Setup PHP 8.0
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, bcmath, intl, gd, exif, iconv
+          coverage: none
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+      
+      - name: wget CO2 data
+        run: wget https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.csv
+        
+      - name: move CO2 data
+        run: mv co2_annmean_mlo.csv docs/
+      
+      - name: Get symfony binary
+        run: wget https://github.com/symfony-cli/symfony-cli/releases/download/v5.4.12/symfony-cli_linux_amd64.tar.gz
+        
+      - name: untar        
+        run: tar -xzf symfony-cli_linux_amd64.tar.gz
+
+      - name: run symfony
+        run: ./symfony server:start &
+      
+      - name: Run codeception tests        
+        run: php vendor/bin/codecept run
+
