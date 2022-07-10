@@ -10,6 +10,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class V1Controller extends AbstractController
 {
+
+    public function __construct()
+    {
+        date_default_timezone_set('UTC');
+    }
+
     /**
      * UnixTime
      * @Route("/api/v1/unixtime", methods={"GET"})

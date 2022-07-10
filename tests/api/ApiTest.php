@@ -11,6 +11,7 @@ class ApiTest extends \Codeception\Test\Unit
     
     protected function _before()
     {
+        date_default_timezone_set('UTC');
     }
 
     protected function _after()
@@ -29,13 +30,13 @@ class ApiTest extends \Codeception\Test\Unit
         $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
         $this->tester->seeResponseIsJson();
         $this->tester->seeResponseMatchesJsonType(['time' => 'integer']);
-        $this->tester->seeResponseEquals(json_encode(['time' => 1640991600]));
+        $this->tester->seeResponseEquals(json_encode(['time' => 1640995200]));
 
         $this->tester->sendGET('/api/v1/unixtime?timestamp=2022-01-01 00:00:00');
         $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
         $this->tester->seeResponseIsJson();
         $this->tester->seeResponseMatchesJsonType(['time' => 'integer']);
-        $this->tester->seeResponseEquals(json_encode(['time' => 1640991600]));
+        $this->tester->seeResponseEquals(json_encode(['time' => 1640995200]));
 
         $this->tester->sendGET('/api/v1/unixtime?timestamp=foo');
         $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
