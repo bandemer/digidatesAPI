@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Service\DateAndTimeService;
+use App\Service\Co2Service;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -200,14 +201,14 @@ class V1Controller extends AbstractController
      *
      * @Route("/api/v1/co2/{year}", methods={"GET"})
      */
-    public function co2(string $year, Request $req, DateAndTimeService $dts): JsonResponse
+    public function co2(string $year, Request $req, Co2Service $co2s): JsonResponse
     {
         $response = [];
         $httpCode = 200;
 
         if (preg_match('/^([0-9]{4,4})$/', $year)) {
 
-            $co2 = $dts->co2($year);
+            $co2 = $co2s->co2($year);
             if ($co2 == 0) {
 
                 $httpCode = 400;
