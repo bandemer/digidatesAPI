@@ -21,7 +21,8 @@ class StatistikController extends AbstractController
         $screenWidth = $req->get('sw', 0);
         $screenHeight = $req->get('sh', 0);
 
-        if ($pageUrl != '' AND
+        if ($statistikService->getUrl() != 'https://' AND 
+            $pageUrl != '' AND
             $pageTitle != '' AND $screenWidth > 0 AND $screenHeight > 0) {
 
             $matomoTracker = new MatomoTracker((int) $statistikService->getSiteid(), $statistikService->getUrl());
