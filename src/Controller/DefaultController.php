@@ -94,7 +94,7 @@ class DefaultController extends AbstractController
             'meta_title' => 'CO² im Jahr',
             'meta_desc' => '',
             'header' => 'C0² im Jahr',
-            'message' => 'Durschnittlicher Jahreswert für C0² in der Athmosphäre in PPM',
+            'message' => 'Durchschnittlicher Jahreswert für C0² in der Athmosphäre in PPM',
             'link' => 'https://gml.noaa.gov/ccgg/trends/data.html',
             'minyear' => 1959,
             'maxyear' => intval(date('Y')) -1,
@@ -102,6 +102,26 @@ class DefaultController extends AbstractController
         ];
 
         return $this->render('sites/co2.html.twig', ['data' => $data]);
+    }
+
+    /**
+     * CO² reverse
+     *
+     * @Route("/co2reverse", name="co2reverse")
+     */
+    public function co2reverse()
+    {
+        $data = [
+            'meta_robots' => 'index,follow',
+            'meta_title' => 'Jahr mit CO² Wert',
+            'meta_desc' => '',
+            'header' => 'Jahr mit CO² Wert',
+            'message' => 'In welchem Jahr lag der C0² Anteil in der Athmosphäre auf dem angegebenen Wert',
+            'link' => 'https://gml.noaa.gov/ccgg/trends/data.html',
+            'defaultyear' => intval(date('Y')) -1,
+        ];
+
+        return $this->render('sites/co2reverse.html.twig', ['data' => $data]);
     }
 
     /**

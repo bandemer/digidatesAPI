@@ -163,7 +163,7 @@ paths:
       description: Mean CO2 level for given year in PPM
       responses:
         '200':
-          description: CO2 level in PPM
+          description: CO² level in PPM
           content:
             application/json:
               schema:
@@ -179,3 +179,26 @@ paths:
           schema:
             type: string
             example: "1959"
+  /co2/reverse/{co2}:
+    get:
+      description: Possible year for given CO² level
+      responses:
+        '200':
+          description: Possible year
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  year:
+                    type: number
+                  co2:
+                    type: number
+      parameters:
+        - in: path
+          name: co2
+          required: true
+          description: Value of CO² level
+          schema:
+            type: number
+            example: 414.24

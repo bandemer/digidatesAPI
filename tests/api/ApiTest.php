@@ -200,4 +200,31 @@ class ApiTest extends \Codeception\Test\Unit
         $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
     }
 
+    public function testCo2revese()
+    {
+        $years = [];
+        $pattern = '/^([0-9]{4,4}),([0-9]+\.[0-9]{2,2}),.*$/';
+
+        $handle = fopen("docs/co2_annmean_mlo.csv", "r");
+        if ($handle) {
+            while (($line = fgets($handle)) !== false) {
+                $matches = [];
+                if (preg_match($pattern, $line, $matches)) {
+                    $years[$matches[1]] = floatval($matches[2]);
+                }
+            }
+            fclose($handle);
+        }
+
+        //Test all available values
+        foreach ($years AS $y => $v) {
+            $this->tester->sendGET('/api/v1/co2/reverse/'.$v);
+            $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+            $this->tester->seeResponseIsJson();
+            $this->tester->seeResponseMatchesJsonType(['year' => 'integer']);
+        }
+
+
+    }
+
 }

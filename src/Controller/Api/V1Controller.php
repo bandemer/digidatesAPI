@@ -229,4 +229,36 @@ class V1Controller extends AbstractController
         );
     }
 
+    /**
+     * Years for given CO² Parts per Million
+     *
+     * https://gml.noaa.gov/ccgg/trends/data.html
+     *
+     * @Route("/api/v1/co2/reverse/{co2}", methods={"GET"})
+     */
+    public function co2reverse(string $co2, Request $req, Co2Service $co2s): JsonResponse
+    {
+        $response = [];
+        $httpCode = 200;
+
+        if (preg_match('/^[1-9][0-9]*(\.[0-9]+)?$/', $co2)) {
+
+            $response = $co2s->reverse(floatval($co2));
+            if (count($response) == 0) {
+
+                $httpCode = 400;
+                $response = ['error' => 'Error! No value for given year.'];
+            }
+
+        } else {
+
+            $response = ['error' => 'Error! Not a valid float value.'];
+            $httpCode = 400;
+        }
+
+        return $this->json($response, $httpCode,
+            ['Access-Control-Allow-Origin' => '*']
+        );
+    }
+
 }
