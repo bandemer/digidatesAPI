@@ -209,7 +209,7 @@ class ApiTest extends \Codeception\Test\Unit
         if ($handle) {
             while (($line = fgets($handle)) !== false) {
                 $matches = [];
-                if (preg_match($pattern, $line, $matches)) {
+                if (preg_match($pattern, $line,  $matches)) {
                     $years[$matches[1]] = floatval($matches[2]);
                 }
             }
