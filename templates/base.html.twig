@@ -8,7 +8,9 @@
 <meta name="description" content="{{ data.meta_desc }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/brands.min.css">
-{% block stylesheets %}{% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
 </head>
 <body>
 <section class="section">
@@ -25,7 +27,9 @@
 
     </div>
 </footer>
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
 <script>
 (function() {
     window.onload = function () {

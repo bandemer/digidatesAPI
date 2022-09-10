@@ -17,3 +17,10 @@
 /templates/sites/impressum.html.twig
 
 /docs/co2_annmean_mlo.csv
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
