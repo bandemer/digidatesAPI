@@ -9,6 +9,7 @@ A REST-Api for time and date functions:
 * Time progress
 * Age
 * Average annual value for C0² in the atmosphere
+* Possible year for given C0² value
 
 [View Demo](https://digidates.de/)
 
@@ -16,3 +17,5 @@ A REST-Api for time and date functions:
 
 ![Swagger Validation Result](https://validator.swagger.io/validator?url=https://raw.githubusercontent.com/bandemer/digidatesAPI/master/docs/openapi.yaml)
  
+
+Made with [Symfony](https://symfony.com) and [Bulma](https://bulma.io) by [Matthias Bandemer](https://bandemer.dev)
