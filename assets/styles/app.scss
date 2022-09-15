@@ -1,2 +1,10 @@
 @charset "utf-8";
 @import "~bulma/bulma";
+
+h1 {
+  background-image: url('/img/digidates-logo.svg');
+  background-size: 89px 70px;
+  background-repeat: no-repeat;
+  background-position: 15px 0px;
+  padding-left: 110px;
+}

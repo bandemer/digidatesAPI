@@ -55,6 +55,9 @@ Encore
         config.corejs = 3;
     })
 
+    .configureCssLoader((options) => {
+        options.url = false
+    })
     // enables Sass/SCSS support
     .enableSassLoader()
 
