@@ -4,6 +4,7 @@ namespace App\Controller\Api;
 
 use App\Service\DateAndTimeService;
 use App\Service\Co2Service;
+use App\Service\Holidays;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -260,5 +261,29 @@ class V1Controller extends AbstractController
             ['Access-Control-Allow-Origin' => '*']
         );
     }
+
+    /**
+     * German public holidays for given year
+     *
+     * @Route("/api/v1/germanpublicholidays/{year}", methods={"GET"})
+     */
+    public function germanPublicHolidays(int $year, Holidays $service): JsonResponse
+    {
+        $response = [];
+        $httpCode = 200;
+
+        if (in_array($year, $service->getSupportedYears())) {
+            $response = $service->germanPublicHolidays($year);
+        } else {
+            $response = ['error' => 'Error! Given year is not supported'];
+            $httpCode = 400;
+        }
+
+        return $this->json($response, $httpCode,
+            ['Access-Control-Allow-Origin' => '*']
+        );
+    }
+
+
 
 }
