@@ -33,6 +33,27 @@ class Holidays
             2037 => '2037-04-05',
         ];
 
+    private $regions = [
+        'DE'    => 'Deutschland',
+        'DE-BW' => 'Baden-Württemberg',
+        'DE-BY' => 'Bayern',
+        'DE-BE' => 'Berlin',
+        'DE-BB' => 'Brandenburg',
+        'DE-HB' => 'Bremen',
+        'DE-HH' => 'Hamburg',
+        'DE-HE' => 'Hessen',
+        'DE-MV' => 'Mecklenburg-Vorpommern',
+        'DE-NI' => 'Niedersachsen',
+        'DE-NW' => 'Nordrhein-Westfalen',
+        'DE-RP' => 'Rheinland-Pfalz',
+        'DE-SL' => 'Saarland',
+        'DE-SN' => 'Sachsen',
+        'DE-ST' => 'Sachsen-Anhalt',
+        'DE-SH' => 'Schleswig-Holstein',
+        'DE-TH' => 'Thüringen',
+    ];
+
+
     /**
      * Return array of supported years
      * @return int[]
