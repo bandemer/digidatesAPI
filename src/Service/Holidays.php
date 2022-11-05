@@ -2,8 +2,6 @@
 
 namespace App\Service;
 
-use function PHPUnit\Framework\throwException;
-
 class Holidays
 {
     /*
@@ -35,6 +33,10 @@ class Holidays
             2037 => '2037-04-05',
         ];
 
+    /**
+     * Germany and her federal states
+     * @var array[]
+     */
     private $regions = [
         'de'    => [
             'title' => 'Deutschland',
