@@ -81,8 +81,6 @@ class ApiTest extends \Codeception\Test\Unit
         $this->tester->seeResponseEquals(json_encode(['weekday' => intval(date('w'))]));
     }
 
-
-
     public function testProgress()
     {
         $startTs = strtotime('2022-01-01');
@@ -223,8 +221,17 @@ class ApiTest extends \Codeception\Test\Unit
             $this->tester->seeResponseIsJson();
             $this->tester->seeResponseMatchesJsonType(['year' => 'integer']);
         }
+    }
 
+    public function testPublicHolidays()
+    {
+        $this->tester->sendGET('/api/v1/germanpublicholidays/2022');
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+        $this->tester->seeResponseIsJson();
 
+        $this->tester->sendGET('/api/v1/germanpublicholidays/2022/de');
+        $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+        $this->tester->seeResponseIsJson();
     }
 
 }
