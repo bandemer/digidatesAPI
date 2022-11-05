@@ -273,7 +273,7 @@ class V1Controller extends AbstractController
         $httpCode = 200;
 
         if (in_array($year, $service->getSupportedYears())) {
-            $response = $service->getHolidays($year, 'DE');
+            $response = $service->getHolidays($year, 'de');
         } else {
             $response = ['error' => 'Error! Given year is not supported'];
             $httpCode = 400;
@@ -315,7 +315,5 @@ class V1Controller extends AbstractController
             ['Access-Control-Allow-Origin' => '*']
         );
     }
-
-
 
 }
