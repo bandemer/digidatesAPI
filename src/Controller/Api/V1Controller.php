@@ -273,7 +273,7 @@ class V1Controller extends AbstractController
         $httpCode = 200;
 
         if (in_array($year, $service->getSupportedYears())) {
-            $response = $service->germanPublicHolidays($year);
+            $response = $service->getHolidays($year, 'de');
         } else {
             $response = ['error' => 'Error! Given year is not supported'];
             $httpCode = 400;
@@ -284,6 +284,36 @@ class V1Controller extends AbstractController
         );
     }
 
+    /**
+     * German public holidays for given year and given region
+     *
+     * @Route("/api/v1/germanpublicholidays/{year}/{region}", methods={"GET"})
+     */
+    public function germanPublicHolidaysForRegion(int $year, string $region, Holidays $service): JsonResponse
+    {
+        $response = [];
+        $httpCode = 200;
 
+        $region = strtolower($region);
+
+        if (in_array($year, $service->getSupportedYears()) AND
+            in_array($region, $service->getSupportedRegions())) {
+            $response = $service->getHolidays($year, $region);
+        } else {
+            $message = [];
+            if (!in_array($year, $service->getSupportedYears())) {
+                $message[] = 'given year is not supported';
+            }
+            if (!in_array($region, $service->getSupportedRegions())) {
+                $message[] = 'given region is not supported';
+            }
+            $response = ['error' => ucfirst(implode(', ', $message)).'.'];
+            $httpCode = 400;
+        }
+
+        return $this->json($response, $httpCode,
+            ['Access-Control-Allow-Origin' => '*']
+        );
+    }
 
 }
