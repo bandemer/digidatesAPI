@@ -1,10 +1,17 @@
 @charset "utf-8";
 @import "~bulma/bulma";
 
+$fa-font-path: "node_modules/@fortawesome/fontawesome-free/webfonts" !default;
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "node_modules/@fortawesome/fontawesome-free/scss/regular";
+
 h1 {
   background-image: url('/img/digidates-logo.svg');
   background-size: 89px 70px;
   background-repeat: no-repeat;
   background-position: 15px 0px;
   padding-left: 110px;
+}
+.hero .subtitle {
+  line-height: 160%;
 }

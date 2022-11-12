@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}
+
+    <div class="is-pulled-right">
+        {% include 'buttonbar.html.twig' %}
+    </div>
+
+    <div class="mt-6">
+        <h2 class="is-size-3 mb-2">{{ data.header }}</h2>
+        <p>{{ data.message }}</p>
+    </div>
+
+
+    <div class="columns mt-5">
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">Jahr:</label>
+                <div class="control">
+                    <select class="input is-medium" id="year"></select>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">Region:</label>
+                <div class="control">
+                    <select class="input is-medium" id="region"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns mb-5">
+        <div class="column">
+            <h3 class="is-size-4">Feiertage:</h3>
+            <div class="is-bordered is-rounded has-background-light p-3">
+                <ul id="holidays"></ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ encore_entry_script_tags('app') }}
+<script>
+
+    const setData = async () => {
+
+        let response = await fetch('/api/v1/germanpublicholidays/supportedyears');
+        let json = await response.json();
+        let html = '';
+        for(let i = 0; i < json.length; i++) {
+            html += '<option>' + json[i] + '</option>';
+        }
+        document.getElementById('year').innerHTML = html;
+
+        response = await fetch('/api/v1/germanpublicholidays/supportedregions');
+        json = await response.json();
+        html = '';
+        for(let i = 0; i < json.length; i++) {
+            html += '<option>' + json[i] + '</option>';
+        }
+        document.getElementById('region').innerHTML = html;
+
+    }
+
+
+    const callApi = async () => {
+
+
+        const year = document.getElementById('year').value;
+        const region = document.getElementById('region').value;
+
+        const response = await fetch('/api/v1/germanpublicholidays/' + year + '/' + region);
+        const json = await response.json();
+
+        let html = '';
+
+        for (let item in json) {
+            html += '<li>' + item + ': ' + json[item] + '</li>';
+        }
+
+        document.getElementById('holidays').innerHTML = html;
+    }
+
+    document.getElementById('year').addEventListener('change', function () {
+        callApi();
+    });
+
+    document.getElementById('region').addEventListener('change', function () {
+        callApi();
+    });
+
+    setData().then(() => {callApi()});
+
+</script>
+
+{% endblock %}

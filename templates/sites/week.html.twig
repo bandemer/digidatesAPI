@@ -4,9 +4,10 @@
 
     {% include 'header.html.twig' %}
 
-    <p>Willkommen bei DigiDates.de - Deinem API-Provider für Zeit- und Datumsberechnungen.</p>
+    <div class="is-pulled-right">
+        {% include 'buttonbar.html.twig' %}
+    </div>
 
-    {% include 'buttonbar.html.twig' %}
 
     <div class="mt-6">
         <h2 class="is-size-3 mb-2">{{ data.header }}</h2>
@@ -37,6 +38,7 @@
 {% endblock %}
 
 {% block javascripts %}
+{{ encore_entry_script_tags('app') }}
 <script>
 
     const callApi = async () => {

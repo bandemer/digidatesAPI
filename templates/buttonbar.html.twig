@@ -1,10 +1,23 @@
-<div class="buttons my-5">
-    <a href="/" class="button is-primary">Unixtime</a>
-    <a href="/week" class="button is-primary">Kalenderwoche</a>
-    <a href="/leapyear" class="button is-primary">Schaltjahr</a>
-    <a href="/checkdate" class="button is-primary">Gültiges Datum</a>
-    <a href="/age" class="button is-primary">Alter</a>
-    <a href="/progress" class="button is-primary">Fortschritt</a>
-    <a href="/co2" class="button is-primary">CO² PPM</a>
-    <a href="/co2reverse" class="button is-primary">CO² Reverse</a>
+<div class="dropdown is-hoverable">
+    <div class="dropdown-trigger">
+        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+            <span>API Demos</span>
+            <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+        </button>
+    </div>
+    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-content">
+            <a href="/unixtime" class="dropdown-item">Unix-Time</a>
+            <a href="/week" class="dropdown-item">Kalenderwoche</a>
+            <a href="/leapyear" class="dropdown-item">Schaltjahr</a>
+            <a href="/checkdate" class="dropdown-item">Gültiges Datum</a>
+            <a href="/age" class="dropdown-item">Alter</a>
+            <a href="/progress" class="dropdown-item">Fortschritt</a>
+            <a href="/co2" class="dropdown-item">CO² PPM</a>
+            <a href="/co2reverse" class="dropdown-item">CO² Reverse</a>
+            <a href="/germanpublicholidays" class="dropdown-item">Deutsche Feiertage</a>
+        </div>
+    </div>
 </div>

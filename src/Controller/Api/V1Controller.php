@@ -263,6 +263,37 @@ class V1Controller extends AbstractController
     }
 
     /**
+     * Supported years for German public holidays
+     *
+     * @Route("/api/v1/germanpublicholidays/supportedyears", methods={"GET"})
+     */
+    public function germanPublicHolidaysSupportedYears(Holidays $service): JsonResponse
+    {
+        $response = $service->getSupportedYears();
+        $httpCode = 200;
+
+        return $this->json($response, $httpCode,
+            ['Access-Control-Allow-Origin' => '*']
+        );
+    }
+
+    /**
+     * Supported regions for German public holidays
+     *
+     * @Route("/api/v1/germanpublicholidays/supportedregions", methods={"GET"})
+     */
+    public function germanPublicHolidaysSupportedRegions(Holidays $service): JsonResponse
+    {
+        $response = $service->getSupportedRegions();
+        $httpCode = 200;
+
+        return $this->json($response, $httpCode,
+            ['Access-Control-Allow-Origin' => '*']
+        );
+    }
+
+
+    /**
      * German public holidays for given year
      *
      * @Route("/api/v1/germanpublicholidays/{year}", methods={"GET"})
@@ -315,5 +346,6 @@ class V1Controller extends AbstractController
             ['Access-Control-Allow-Origin' => '*']
         );
     }
+
 
 }
