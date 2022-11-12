@@ -202,3 +202,57 @@ paths:
           schema:
             type: number
             example: 414.24
+
+  /germanpublicholidays:
+    get:
+      description: Get German public holidays of given year
+      responses:
+        '200':
+          description: German public holidays
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      parameters:
+        - in: query
+          name: year
+          required: false
+          description: Year
+          schema:
+            type: string
+            example: "2022"
+        - in: query
+          name: region
+          required: false
+          description: region
+          schema:
+            type: string
+            example: "de-bb"
+
+  /germanpublicholidays/supportedyears:
+    get:
+      description: Supported years for German public holidays
+      responses:
+        '200':
+          description: Supported years
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+
+  /germanpublicholidays/supportedregions:
+    get:
+      description: Supported regions for German public holidays
+      responses:
+        '200':
+          description: Supported regions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string

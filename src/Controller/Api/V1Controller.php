@@ -173,7 +173,7 @@ class V1Controller extends AbstractController
      *
      * @Route("/api/v1/age/{birthday}", methods={"GET"})
      */
-    public function age(string $birthday, Request $req, DateAndTimeService $dts): JsonResponse
+    public function age(string $birthday, DateAndTimeService $dts): JsonResponse
     {
         $response = [];
         $httpCode = 200;
@@ -202,7 +202,7 @@ class V1Controller extends AbstractController
      *
      * @Route("/api/v1/co2/{year}", methods={"GET"})
      */
-    public function co2(string $year, Request $req, Co2Service $co2s): JsonResponse
+    public function co2(string $year, Co2Service $co2s): JsonResponse
     {
         $response = [];
         $httpCode = 200;
@@ -292,38 +292,18 @@ class V1Controller extends AbstractController
         );
     }
 
-
-    /**
-     * German public holidays for given year
-     *
-     * @Route("/api/v1/germanpublicholidays/{year}", methods={"GET"})
-     */
-    public function germanPublicHolidays(int $year, Holidays $service): JsonResponse
-    {
-        $response = [];
-        $httpCode = 200;
-
-        if (in_array($year, $service->getSupportedYears())) {
-            $response = $service->getHolidays($year, 'de');
-        } else {
-            $response = ['error' => 'Error! Given year is not supported'];
-            $httpCode = 400;
-        }
-
-        return $this->json($response, $httpCode,
-            ['Access-Control-Allow-Origin' => '*']
-        );
-    }
-
     /**
      * German public holidays for given year and given region
      *
-     * @Route("/api/v1/germanpublicholidays/{year}/{region}", methods={"GET"})
+     * @Route("/api/v1/germanpublicholidays", methods={"GET"})
      */
-    public function germanPublicHolidaysForRegion(int $year, string $region, Holidays $service): JsonResponse
+    public function germanPublicHolidaysForRegion(Request $req, Holidays $service): JsonResponse
     {
         $response = [];
         $httpCode = 200;
+
+        $region = $req->get('region', 'de');
+        $year = $req->get('year', date('Y'));
 
         $region = strtolower($region);
 

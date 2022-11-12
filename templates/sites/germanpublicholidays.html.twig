@@ -64,21 +64,17 @@
             html += '<option>' + json[i] + '</option>';
         }
         document.getElementById('region').innerHTML = html;
-
     }
 
-
     const callApi = async () => {
-
 
         const year = document.getElementById('year').value;
         const region = document.getElementById('region').value;
 
-        const response = await fetch('/api/v1/germanpublicholidays/' + year + '/' + region);
+        const response = await fetch('/api/v1/germanpublicholidays?year=' + year + '&region=' + region);
         const json = await response.json();
 
         let html = '';
-
         for (let item in json) {
             html += '<li>' + item + ': ' + json[item] + '</li>';
         }
@@ -94,7 +90,7 @@
         callApi();
     });
 
-    setData().then(() => {callApi()});
+    setData().then(() => { callApi() });
 
 </script>
 
