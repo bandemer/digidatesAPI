@@ -225,11 +225,11 @@ class ApiTest extends \Codeception\Test\Unit
 
     public function testPublicHolidays()
     {
-        $this->tester->sendGET('/api/v1/germanpublicholidays/2022');
+        $this->tester->sendGET('/api/v1/germanpublicholidays?year=2022');
         $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
         $this->tester->seeResponseIsJson();
 
-        $this->tester->sendGET('/api/v1/germanpublicholidays/2022/de');
+        $this->tester->sendGET('/api/v1/germanpublicholidays?year=2022&region=de');
         $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
         $this->tester->seeResponseIsJson();
     }
