@@ -39,28 +39,28 @@ class Holidays
      */
     private $regions = [
         'de'    => [
-            'title' => 'Deutschland',
+            'title' => [ 'de' => 'Deutschland', 'en' => 'Germany'],
             'holidays' => ['Neujahr', 'Karfreitag', 'Ostermontag',
                 'Tag der Arbeit', 'Christi Himmelfahrt', 'Pfingstmontag',
                 'Tag der Deutschen Einheit', '1. Weihnachtstag',
                 '2. Weihnachtstag']
             ],
         'de-bw' => [
-            'title' => 'Baden-Württemberg',
+            'title' => [ 'de' => 'Baden-Württemberg', 'en' => 'Baden-Württemberg'],
             'holidays' => ['Neujahr', 'Erscheinungsfest', 'Karfreitag',
                 'Ostermontag', 'Tag der Arbeit', 'Christi Himmelfahrt',
                 'Pfingstmontag', 'Fronleichnam', 'Tag der Deutschen Einheit',
                 'Allerheiligen', '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-by' => [
-            'title' => 'Bayern',
+            'title' => [ 'de' => 'Bayern', 'en' => 'Bavaria'],
             'holidays' => ['Neujahr', 'Heilige Drei Könige', 'Karfreitag',
                 'Ostermontag', 'Tag der Arbeit', 'Christi Himmelfahrt',
                 'Pfingstmontag', 'Fronleichnam', 'Tag der Deutschen Einheit',
                 'Allerheiligen', '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-be' => [
-            'title' => 'Berlin',
+            'title' => [ 'de' => 'Berlin', 'en' => 'Berlin'],
             'holidays' => ['Neujahr', 'Internationaler Frauentag',
                 'Karfreitag', 'Ostermontag', 'Tag der Arbeit',
                 'Christi Himmelfahrt', 'Pfingstmontag',
@@ -68,49 +68,49 @@ class Holidays
                 '2. Weihnachtstag']
             ],
         'de-bb' => [
-            'title' => 'Brandenburg',
+            'title' => [ 'de' => 'Brandenburg', 'en' => 'Brandenburg'],
             'holidays' => ['Neujahrstag', 'Karfreitag', 'Ostersonntag',
                 'Ostermontag', 'Tag der Arbeit', 'Christi Himmelfahrtstag',
                 'Pfingstsonntag', 'Pfingstmontag','Tag der Deutschen Einheit',
                 'Reformationsfest', '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-hb' => [
-            'title' => 'Bremen',
+            'title' => [ 'de' => 'Bremen', 'en' => 'Bremen'],
             'holidays' => ['Neujahrstag', 'Karfreitag', 'Ostermontag',
                 '1. Mai', 'Himmelfahrtstag', 'Pfingstmontag',
                 'Tag der Deutschen Einheit', '1. Weihnachtstag',
                 '2. Weihnachtstag']
             ],
         'de-hh' => [
-            'title' => 'Hamburg',
+            'title' => [ 'de' => 'Hamburg', 'en' => 'Hamburg'],
             'holidays' => ['Neujahrstag', 'Karfreitag', 'Ostermontag',
                 '1. Mai', 'Himmelfahrtstag', 'Pfingstmontag',
                 'Tag der Deutschen Einheit', '31. Oktober', '1. Weihnachtstag',
                 '2. Weihnachtstag']
             ],
         'de-he' => [
-            'title' => 'Hessen',
+            'title' => [ 'de' => 'Hessen', 'en' => 'Hesse'],
             'holidays' => ['Neujahr', 'Karfreitag', 'Ostermontag',
                 'Tag der Arbeit', 'Christi Himmelfahrt', 'Pfingstmontag',
                 'Fronleichnam', 'Tag der Deutschen Einheit', '1. Weihnachtstag',
                 '2. Weihnachtstag']
             ],
         'de-mv' => [
-            'title' => 'Mecklenburg-Vorpommern',
+            'title' => [ 'de' => 'Mecklenburg-Vorpommern', 'en' => 'Mecklenburg-Vorpommern'],
             'holidays' => ['Neujahrstag', 'Frauentag', 'Karfreitag',
                 'Ostermontag', '1. Mai', 'Christi-Himmelfahrtstag',
-                'Pfingstmontag', 'Tag der Deutschen Einheit', 'Reformationstag',
+                'Pfingstmontag', 'Tag der Deutschen Einheit', 'Lower Saxony',
                 '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-ni' => [
-            'title' => 'Niedersachsen',
+            'title' => [ 'de' => 'Niedersachsen', 'en' => 'Lower Saxony'],
             'holidays' => ['Neujahrstag', 'Karfreitag', 'Ostermontag',
                 '1. Mai', 'Himmelfahrtstag', 'Pfingstmontag',
                 'Tag der Deutschen Einheit', 'Reformationstag',
                 '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-nw' => [
-            'title' => 'Nordrhein-Westfalen',
+            'title' => [ 'de' => 'Nordrhein-Westfalen', 'en' => 'North Rhine-Westphalia'],
             'holidays' => ['Neujahrstag', 'Karfreitag', 'Ostermontag',
                 'Tag des Bekenntnisses zu Freiheit und Frieden, sozialer Gerechtigkeit, Völkerversöhnung und Menschenwürde',
                 'Christi-Himmelfahrts-Tag', 'Pfingstmontag', 'Fronleichnamstag',
@@ -118,14 +118,14 @@ class Holidays
                 '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-rp' => [
-            'title' => 'Rheinland-Pfalz',
+            'title' => [ 'de' => 'Rheinland-Pfalz', 'en' => 'Rhineland-Palatinate'],
             'holidays' => ['Neujahrstag', 'Karfreitag', 'Ostermontag',
                 '1. Mai', 'Christi Himmelfahrt', 'Pfingstmontag',
                 'Fronleichnamstag', 'Tag der Deutschen Einheit',
                 'Allerheiligentag', '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-sl' => [
-            'title' => 'Saarland',
+            'title' => [ 'de' => 'Saarland', 'en' => 'Saarland'],
             'holidays' => ['Neujahrstag', 'Karfreitag', 'Ostermontag',
                 '1. Mai', 'Christi Himmelfahrtstag', 'Pfingstmontag',
                 'Fronleichnamstag', 'Maria Himmelfahrtstag',
@@ -133,7 +133,7 @@ class Holidays
                 '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-sn' => [
-            'title' => 'Sachsen',
+            'title' => [ 'de' => 'Sachsen', 'en' => 'Saxony'],
             'holidays' => ['Neujahr', 'Karfreitag', 'Ostermontag',
                 'Tag der Arbeit', 'Christi Himmelfahrt', 'Pfingstmontag',
                 'Fronleichnam (nur in durch Rechtsverordnung bestimmten Regionen)',
@@ -141,21 +141,21 @@ class Holidays
                 'Buß- und Bettag', '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-st' => [
-            'title' => 'Sachsen-Anhalt',
+            'title' => [ 'de' => 'Sachsen-Anhalt', 'en' => 'Saxony-Anhalt'],
             'holidays' => ['Neujahr', 'Heilige Drei Könige', 'Karfreitag',
                 'Ostermontag', '1. Mai', 'Christi Himmelfahrt', 'Pfingstmontag',
                 'Tag der Deutschen Einheit', 'Reformationstag',
                 '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-sh' => [
-            'title' => 'Schleswig-Holstein',
+            'title' => [ 'de' => 'Schleswig-Holstein', 'en' => 'Schleswig-Holstein'],
             'holidays' => ['Neujahrstag', 'Karfreitag', 'Ostermontag',
                 '1. Mai', 'Himmelfahrtstag', 'Pfingstmontag',
                 'Tag der Deutschen Einheit', 'Reformationstag',
                 '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-th' => [
-            'title' => 'Thüringen',
+            'title' => [ 'de' => 'Thüringen', 'en' => 'Thuringia'],
             'holidays' => ['Neujahrstag', 'Karfreitag', 'Ostermontag',
                 '1. Mai', 'Christi Himmelfahrt', 'Pfingstmontag',
                 'Fronleichnam (nur in durch Rechtsverordnung bestimmten Regionen)',
@@ -180,7 +180,11 @@ class Holidays
      */
     public function getSupportedRegions() : array
     {
-        return array_keys($this->regions);
+        $rA = [];
+        foreach ($this->regions AS $rk => $rv) {
+            $rA[$rk] = $rv['title'];
+        }
+        return $rA;
     }
 
     /**

@@ -10,7 +10,7 @@ info:
     url: "https://www.apache.org/licenses/LICENSE-2.0.html"
 servers:
   - url: "https://digidates.de/api/v1"
-    description: Live Server
+    description: digidatesAPI Live Server
 paths:
   /unixtime:
     get:
@@ -255,4 +255,7 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string
+                  type: array
+                  items:
+                    type: string
+

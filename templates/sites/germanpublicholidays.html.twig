@@ -59,9 +59,10 @@
 
         response = await fetch('/api/v1/germanpublicholidays/supportedregions');
         json = await response.json();
+
         html = '';
-        for(let i = 0; i < json.length; i++) {
-            html += '<option>' + json[i] + '</option>';
+        for (const [key, value] of Object.entries(json)) {
+            html += '<option value="' + key + '">' + value.de + '</option>';
         }
         document.getElementById('region').innerHTML = html;
     }
@@ -70,7 +71,6 @@
 
         const year = document.getElementById('year').value;
         const region = document.getElementById('region').value;
-
         const response = await fetch('/api/v1/germanpublicholidays?year=' + year + '&region=' + region);
         const json = await response.json();
 

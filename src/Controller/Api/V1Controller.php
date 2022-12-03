@@ -298,14 +298,14 @@ class V1Controller extends AbstractController
         $region = strtolower($region);
 
         if (in_array($year, $service->getSupportedYears()) AND
-            in_array($region, $service->getSupportedRegions())) {
+            array_key_exists($region, $service->getSupportedRegions())) {
             $response = $service->getHolidays($year, $region);
         } else {
             $message = [];
             if (!in_array($year, $service->getSupportedYears())) {
                 $message[] = 'given year is not supported';
             }
-            if (!in_array($region, $service->getSupportedRegions())) {
+            if (!array_key_exists($region, $service->getSupportedRegions())) {
                 $message[] = 'given region is not supported';
             }
             $response = ['error' => ucfirst(implode(', ', $message)).'.'];

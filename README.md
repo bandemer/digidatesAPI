@@ -10,6 +10,7 @@ A REST-Api for time and date functions:
 * Age
 * Average annual value for C0² in the atmosphere
 * Possible year for given C0² value
+* German public holidays
 
 [View Demo](https://digidates.de/)
 
