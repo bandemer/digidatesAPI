@@ -10,8 +10,8 @@ class DemoController extends AbstractController
 {
     /**
      * Unix Time
-     * @Route("/unixtime", name="unixtime")
      */
+    #[Route(path: '/unixtime', name: 'unixtime')]
     public function unixtime()
     {
         $data = [
@@ -29,8 +29,8 @@ class DemoController extends AbstractController
 
     /**
      * Week
-     * @Route("/week", name="week")
      */
+    #[Route(path: '/week', name: 'week')]
     public function week()
     {
         $data = [
@@ -47,9 +47,8 @@ class DemoController extends AbstractController
 
     /**
      * Prüfen ob valides Datum
-     *
-     * @Route("/checkdate", name="checkdate")
      */
+    #[Route(path: '/checkdate', name: 'checkdate')]
     public function checkdate()
     {
         $data = [
@@ -65,9 +64,8 @@ class DemoController extends AbstractController
 
     /**
      * Leapyear
-     *
-     * @Route("/leapyear", name="leapyear")
      */
+    #[Route(path: '/leapyear', name: 'leapyear')]
     public function leapyear()
     {
         $data = [
@@ -84,9 +82,8 @@ class DemoController extends AbstractController
 
     /**
      * CO²
-     *
-     * @Route("/co2", name="co2")
      */
+    #[Route(path: '/co2', name: 'co2')]
     public function co2()
     {
         $data = [
@@ -106,9 +103,8 @@ class DemoController extends AbstractController
 
     /**
      * CO² reverse
-     *
-     * @Route("/co2reverse", name="co2reverse")
      */
+    #[Route(path: '/co2reverse', name: 'co2reverse')]
     public function co2reverse()
     {
         $data = [
@@ -126,9 +122,8 @@ class DemoController extends AbstractController
 
     /**
      * Age
-     *
-     * @Route("/age", name="age")
      */
+    #[Route(path: '/age', name: 'age')]
     public function age()
     {
         $data = [
@@ -144,9 +139,8 @@ class DemoController extends AbstractController
 
     /**
      * Fortschritt
-     *
-     * @Route("/progress", name="progress")
      */
+    #[Route(path: '/progress', name: 'progress')]
     public function progress()
     {
         $data = [
@@ -164,9 +158,8 @@ class DemoController extends AbstractController
 
     /**
      * Gesetzliche Feiertage in Deutschland
-     *
-     * @Route("/germanpublicholidays", name="germanpublicholidays")
      */
+    #[Route(path: '/germanpublicholidays', name: 'germanpublicholidays')]
     public function germanpublicholidays()
     {
         $data = [

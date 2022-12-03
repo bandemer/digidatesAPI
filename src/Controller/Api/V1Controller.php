@@ -20,8 +20,8 @@ class V1Controller extends AbstractController
 
     /**
      * UnixTime
-     * @Route("/api/v1/unixtime", methods={"GET"})
      */
+    #[Route(path: '/api/v1/unixtime', methods: ['GET'])]
     public function unixtime(Request $req): JsonResponse
     {
 
@@ -70,9 +70,8 @@ class V1Controller extends AbstractController
 
     /**
      * ISO week date
-     *
-     * @Route("/api/v1/week")
      */
+    #[Route(path: '/api/v1/week')]
     public function week(Request $req, DateAndTimeService $dts): JsonResponse
     {
         $date = $req->get('date', '');
@@ -87,8 +86,8 @@ class V1Controller extends AbstractController
 
     /**
      * Schaltjahr
-     * @Route("/api/v1/leapyear", methods={"GET"})
      */
+    #[Route(path: '/api/v1/leapyear', methods: ['GET'])]
     public function leapyear(Request $req, DateAndTimeService $dts): JsonResponse
     {
         $year = $req->get('year', '');
@@ -103,9 +102,8 @@ class V1Controller extends AbstractController
 
     /**
      * Is ist a valid Date?
-     *
-     * @Route("/api/v1/checkdate", methods={"GET"})
      */
+    #[Route(path: '/api/v1/checkdate', methods: ['GET'])]
     public function checkdate(Request $req, DateAndTimeService $dts): JsonResponse
     {
         $date = $req->get('date', '');
@@ -128,9 +126,8 @@ class V1Controller extends AbstractController
 
     /**
      * Day of Week
-     *
-     * @Route("/api/v1/weekday", methods={"GET"})
      */
+    #[Route(path: '/api/v1/weekday', methods: ['GET'])]
     public function weekday(Request $req, DateAndTimeService $dts): JsonResponse
     {
         $date = $req->get('date', '');
@@ -153,9 +150,8 @@ class V1Controller extends AbstractController
 
     /**
      * reached progress from one timestamp to another
-     *
-     * @Route("/api/v1/progress", methods={"GET"})
      */
+    #[Route(path: '/api/v1/progress', methods: ['GET'])]
     public function progress(Request $req, DateAndTimeService $dts): JsonResponse
     {
         $start = $req->get('start', '');
@@ -170,9 +166,8 @@ class V1Controller extends AbstractController
 
     /**
      * Get age for birthday
-     *
-     * @Route("/api/v1/age/{birthday}", methods={"GET"})
      */
+    #[Route(path: '/api/v1/age/{birthday}', methods: ['GET'])]
     public function age(string $birthday, DateAndTimeService $dts): JsonResponse
     {
         $response = [];
@@ -199,9 +194,8 @@ class V1Controller extends AbstractController
      * CO² Parts per Million
      *
      * https://gml.noaa.gov/ccgg/trends/data.html
-     *
-     * @Route("/api/v1/co2/{year}", methods={"GET"})
      */
+    #[Route(path: '/api/v1/co2/{year}', methods: ['GET'])]
     public function co2(string $year, Co2Service $co2s): JsonResponse
     {
         $response = [];
@@ -234,9 +228,8 @@ class V1Controller extends AbstractController
      * Years for given CO² Parts per Million
      *
      * https://gml.noaa.gov/ccgg/trends/data.html
-     *
-     * @Route("/api/v1/co2/reverse/{co2}", methods={"GET"})
      */
+    #[Route(path: '/api/v1/co2/reverse/{co2}', methods: ['GET'])]
     public function co2reverse(string $co2, Request $req, Co2Service $co2s): JsonResponse
     {
         $response = [];
@@ -264,9 +257,8 @@ class V1Controller extends AbstractController
 
     /**
      * Supported years for German public holidays
-     *
-     * @Route("/api/v1/germanpublicholidays/supportedyears", methods={"GET"})
      */
+    #[Route(path: '/api/v1/germanpublicholidays/supportedyears', methods: ['GET'])]
     public function germanPublicHolidaysSupportedYears(Holidays $service): JsonResponse
     {
         $response = $service->getSupportedYears();
@@ -279,9 +271,8 @@ class V1Controller extends AbstractController
 
     /**
      * Supported regions for German public holidays
-     *
-     * @Route("/api/v1/germanpublicholidays/supportedregions", methods={"GET"})
      */
+    #[Route(path: '/api/v1/germanpublicholidays/supportedregions', methods: ['GET'])]
     public function germanPublicHolidaysSupportedRegions(Holidays $service): JsonResponse
     {
         $response = $service->getSupportedRegions();
@@ -294,9 +285,8 @@ class V1Controller extends AbstractController
 
     /**
      * German public holidays for given year and given region
-     *
-     * @Route("/api/v1/germanpublicholidays", methods={"GET"})
      */
+    #[Route(path: '/api/v1/germanpublicholidays', methods: ['GET'])]
     public function germanPublicHolidaysForRegion(Request $req, Holidays $service): JsonResponse
     {
         $response = [];

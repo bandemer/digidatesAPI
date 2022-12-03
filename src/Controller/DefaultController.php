@@ -10,8 +10,8 @@ class DefaultController extends AbstractController
 {
     /**
      * Index
-     * @Route("/", name="index")
      */
+    #[Route(path: '/', name: 'index')]
     public function index()
     {
         $data = [
@@ -26,9 +26,8 @@ class DefaultController extends AbstractController
 
     /**
      * Open API YAML file
-     *
-     * @Route("/docs/openapi.yaml", name="openapi.yaml")
      */
+    #[Route(path: '/docs/openapi.yaml', name: 'openapi.yaml')]
     public function openapiyaml()
     {
         $output = file_get_contents('../docs/openapi.yaml');
@@ -40,9 +39,8 @@ class DefaultController extends AbstractController
 
     /**
      * Datenschutz
-     *
-     * @Route("/datenschutz.html", name="datenschutz")
      */
+    #[Route(path: '/datenschutz.html', name: 'datenschutz')]
     public function datenschutz()
     {
         $data = [
@@ -56,9 +54,8 @@ class DefaultController extends AbstractController
 
     /**
      * Impressum
-     *
-     * @Route("/impressum.html", name="impressum")
      */
+    #[Route(path: '/impressum.html', name: 'impressum')]
     public function impressum()
     {
         $data = [
