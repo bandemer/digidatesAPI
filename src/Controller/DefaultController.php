@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DefaultController extends AbstractController
 {
@@ -12,16 +13,46 @@ class DefaultController extends AbstractController
      * Index
      */
     #[Route(path: '/', name: 'index')]
-    public function index()
+    public function index(TranslatorInterface $tl)
     {
         $data = [
             'meta_robots' => 'index,follow',
-            'meta_title' => 'DigiDates.de - API für Datums- und Zeit-Funktionen',
-            'meta_desc' => 'Kostenlose REST API für Datums- und Zeitfunktionen.',
+            'meta_title' => $tl->trans('DigiDates.de - API für Datums- und Zeit-Berechnungen'),
+            'meta_desc' => $tl->trans('Kostenlose REST API für Datums- und Zeit-Berechnungen.'),
         ];
 
         return $this->render('sites/index.html.twig',
             ['data' => $data]);
+    }
+
+    /**
+     * Datenschutz
+     */
+    #[Route(path: '/datenschutz', name: 'datenschutz')]
+    public function datenschutz(TranslatorInterface $tl)
+    {
+        $data = [
+            'meta_robots' => 'noindex,follow',
+            'meta_title' => $tl->trans('Datenschutz'),
+            'meta_desc' => '',
+        ];
+
+        return $this->render('sites/datenschutz.html.twig', ['data' => $data]);
+    }
+
+    /**
+     * Impressum
+     */
+    #[Route(path: '/impressum', name: 'impressum')]
+    public function impressum(TranslatorInterface $tl)
+    {
+        $data = [
+            'meta_robots' => 'noindex,follow',
+            'meta_title' => $tl->trans('Impressum'),
+            'meta_desc' => '',
+        ];
+
+        return $this->render('sites/impressum.html.twig', ['data' => $data]);
     }
 
     /**
@@ -37,33 +68,4 @@ class DefaultController extends AbstractController
         return new Response($output);
     }
 
-    /**
-     * Datenschutz
-     */
-    #[Route(path: '/datenschutz.html', name: 'datenschutz')]
-    public function datenschutz()
-    {
-        $data = [
-            'meta_robots' => 'noindex,follow',
-            'meta_title' => 'Datenschutz',
-            'meta_desc' => '',
-        ];
-
-        return $this->render('sites/datenschutz.html.twig', ['data' => $data]);
-    }
-
-    /**
-     * Impressum
-     */
-    #[Route(path: '/impressum.html', name: 'impressum')]
-    public function impressum()
-    {
-        $data = [
-            'meta_robots' => 'noindex,follow',
-            'meta_title' => 'Impressum',
-            'meta_desc' => '',
-        ];
-
-        return $this->render('sites/impressum.html.twig', ['data' => $data]);
-    }
 }

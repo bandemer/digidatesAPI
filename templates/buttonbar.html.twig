@@ -1,23 +1,23 @@
 <div class="dropdown is-hoverable">
     <div class="dropdown-trigger">
-        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-            <span>API Demos</span>
+        <button class="button" aria-haspopup="true" aria-controls="demos-dropdown">
+            <span>{% trans %}API Demos{% endtrans %}</span>
             <span class="icon is-small">
         <i class="fas fa-angle-down" aria-hidden="true"></i>
       </span>
         </button>
     </div>
-    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+    <div class="dropdown-menu" id="demos-dropdown" role="menu">
         <div class="dropdown-content">
-            <a href="/unixtime" class="dropdown-item">Unix-Time</a>
-            <a href="/week" class="dropdown-item">Kalenderwoche</a>
-            <a href="/leapyear" class="dropdown-item">Schaltjahr</a>
-            <a href="/checkdate" class="dropdown-item">Gültiges Datum</a>
-            <a href="/age" class="dropdown-item">Alter</a>
-            <a href="/progress" class="dropdown-item">Fortschritt</a>
-            <a href="/co2" class="dropdown-item">CO² PPM</a>
-            <a href="/co2reverse" class="dropdown-item">CO² Reverse</a>
-            <a href="/germanpublicholidays" class="dropdown-item">Deutsche Feiertage</a>
+            <a href="{{ url('unixtime') }}" class="dropdown-item">{% trans %}Unix-Time{% endtrans %}</a>
+            <a href="{{ url('week') }}" class="dropdown-item">{% trans %}Kalenderwoche{% endtrans %}</a>
+            <a href="{{ url('leapyear') }}" class="dropdown-item">{% trans %}Schaltjahr{% endtrans %}</a>
+            <a href="{{ url('checkdate') }}" class="dropdown-item">{% trans %}Gültiges Datum{% endtrans %}</a>
+            <a href="{{ url('age') }}" class="dropdown-item">{% trans %}Alter{% endtrans %}</a>
+            <a href="{{ url('progress') }}" class="dropdown-item">{% trans %}Fortschritt{% endtrans %}</a>
+            <a href="{{ url('co2') }}" class="dropdown-item">{% trans %}CO² PPM{% endtrans %}</a>
+            <a href="{{ url('co2reverse') }}" class="dropdown-item">{% trans %}CO² Reverse{% endtrans %}</a>
+            <a href="{{ url('germanpublicholidays') }}" class="dropdown-item">{% trans %}Deutsche Feiertage{% endtrans %}</a>
         </div>
     </div>
 </div>

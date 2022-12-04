@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{ app.request.locale }}">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,8 +33,8 @@
 <footer class="footer">
     <div class="content has-text-centered">
 
-        <a class="m-2 has-text-dark" href="{{ url('impressum') }}">Impressum</a>
-        <a class="m-2 has-text-dark" href="{{ url('datenschutz') }}">Datenschutz</a>
+        <a class="m-2 has-text-dark" href="{{ url('impressum') }}">{% trans %}Impressum{% endtrans %}</a>
+        <a class="m-2 has-text-dark" href="{{ url('datenschutz') }}">{% trans %}Datenschutz{% endtrans %}</a>
         <span class="m-2">Made by <a href="https://bandemer.dev" class="has-text-dark">bandemer.dev</a></span>
 
     </div>

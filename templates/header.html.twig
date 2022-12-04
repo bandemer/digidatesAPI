@@ -1,16 +1,43 @@
 <div class="columns">
     <div class="column py-0">
         <h1 class="is-size-1">
-            <a href="/" class="has-text-dark">DigiDates.de <sup class="tag is-light">Beta</sup></a>
+            <a href="{{ url('index') }}" class="has-text-dark">DigiDates.de <sup class="tag is-light">Beta</sup></a>
         </h1>
     </div>
-    <div class="column has-text-right py-4">
-        <a class="button m-2" href="{{ url('openapi.yaml') }}">
-            <img src="/img/swagger.svg" alt="Swagger Icon" height="22" width="22" class="mr-2"> OpenAPI Specification
-        </a>
-        <a class="button m-2" href="https://github.com/bandemer/digidatesAPI">
-            <img src="/img/github.svg" alt="GitHub Icon" height="22" width="22" class="mr-2"> Fork on GitHub
-        </a>
+    <div class="column">
+        <div class="dropdown is-hoverable">
+            <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="lang-dropdown">
+                    <span>{% trans %}Mehr erfahren{% endtrans %}</span>
+                    <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+                </button>
+            </div>
+            <div class="dropdown-menu" id="lang-dropdown" role="menu">
+                <div class="dropdown-content">
+                    <a class="dropdown-item" href="{{ url('openapi.yaml') }}">
+                        <img src="/img/swagger.svg" alt="Swagger Icon" height="22" width="22" class="mr-2"> OpenAPI Specification
+                    </a>
+                    <a class="dropdown-item" href="https://github.com/bandemer/digidatesAPI">
+                        <img src="/img/github.svg" alt="GitHub Icon" height="22" width="22" class="mr-2"> Fork on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown is-hoverable mx-3">
+            <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="lang-dropdown">
+                    <span>{% trans %}Sprache wählen{% endtrans %}</span>
+                    <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+                </button>
+            </div>
+            <div class="dropdown-menu" id="lang-dropdown" role="menu">
+                <div class="dropdown-content">
+                    <a href="{{ path('index', { _locale: 'de' }) }}" class="dropdown-item">Deutsch</a>
+                    <a href="{{ path('index', { _locale: 'en' }) }}" class="dropdown-item">English</a>
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
 <hr>

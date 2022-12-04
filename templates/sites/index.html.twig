@@ -4,18 +4,16 @@
 
     {% include 'header.html.twig' %}
 
-
-
     <section class="hero">
         <div class="hero-body">
             <div class="title">
-                <h2>Willkommen bei DigiDates.de</h2>
+                <h2>{% trans %}Willkommen bei DigiDates.de{% endtrans %}</h2>
             </div>
             <div class="subtitle my-4">
 
                 <div class="my-4">
-                    DigiDates.de bietet eine Rest-API für Zeit- und Datumsberechnungen.<br>
-                    Der Zugriff auf die API ist kostenlos und aktuell ohne Limitierung möglich.
+                    {% trans %}DigiDates.de bietet eine Rest-API für Zeit- und Datumsberechnungen.{% endtrans %}<br>
+                    {% trans %}Der Zugriff auf die API ist kostenlos und aktuell ohne Limitierung möglich.{% endtrans %}
                 </div>
 
                 <div><a class="button mr-2" href="{{ url('openapi.yaml') }}">

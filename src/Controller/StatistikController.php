@@ -11,7 +11,7 @@ use MatomoTracker;
 
 class StatistikController extends AbstractController
 {
-    #[Route(path: '/st', name: 'statistik')]
+    #[Route(path: '/st/', name: 'statistik')]
     public function statistik(Request $req, StatistikService $statistikService): JsonResponse
     {
         $pageUrl = $req->get('pu', '');
