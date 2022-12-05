@@ -20,7 +20,6 @@ class DefaultController extends AbstractController
             'meta_title' => $tl->trans('DigiDates.de - API für Datums- und Zeit-Berechnungen'),
             'meta_desc' => $tl->trans('Kostenlose REST API für Datums- und Zeit-Berechnungen.'),
         ];
-
         return $this->render('sites/index.html.twig',
             ['data' => $data]);
     }
@@ -36,7 +35,6 @@ class DefaultController extends AbstractController
             'meta_title' => $tl->trans('Datenschutz'),
             'meta_desc' => '',
         ];
-
         return $this->render('sites/datenschutz.html.twig', ['data' => $data]);
     }
 
@@ -51,7 +49,6 @@ class DefaultController extends AbstractController
             'meta_title' => $tl->trans('Impressum'),
             'meta_desc' => '',
         ];
-
         return $this->render('sites/impressum.html.twig', ['data' => $data]);
     }
 
