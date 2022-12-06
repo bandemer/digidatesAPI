@@ -13,7 +13,7 @@ class DefaultController extends AbstractController
      * Index
      */
     #[Route(path: '/', name: 'index')]
-    public function index(TranslatorInterface $tl)
+    public function index(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots' => 'index,follow',
@@ -28,7 +28,7 @@ class DefaultController extends AbstractController
      * Datenschutz
      */
     #[Route(path: '/datenschutz', name: 'datenschutz')]
-    public function datenschutz(TranslatorInterface $tl)
+    public function datenschutz(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots' => 'noindex,follow',
@@ -42,7 +42,7 @@ class DefaultController extends AbstractController
      * Impressum
      */
     #[Route(path: '/impressum', name: 'impressum')]
-    public function impressum(TranslatorInterface $tl)
+    public function impressum(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots' => 'noindex,follow',
@@ -56,7 +56,7 @@ class DefaultController extends AbstractController
      * Open API YAML file
      */
     #[Route(path: '/docs/openapi.yaml', name: 'openapi.yaml')]
-    public function openapiyaml()
+    public function openapiyaml() : Response
     {
         $output = file_get_contents('../docs/openapi.yaml');
         $r = new Response($output);

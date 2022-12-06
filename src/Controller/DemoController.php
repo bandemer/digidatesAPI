@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DemoController extends AbstractController
@@ -12,7 +13,7 @@ class DemoController extends AbstractController
      * Unix Time
      */
     #[Route(path: '/unixtime', name: 'unixtime')]
-    public function unixtime(TranslatorInterface $tl)
+    public function unixtime(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots' => 'index,follow',
@@ -30,7 +31,7 @@ class DemoController extends AbstractController
      * Check if date is valid
      */
     #[Route(path: '/checkdate', name: 'checkdate')]
-    public function checkdate(TranslatorInterface $tl)
+    public function checkdate(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots'   => 'index,follow',
@@ -46,7 +47,7 @@ class DemoController extends AbstractController
      * Week
      */
     #[Route(path: '/week', name: 'week')]
-    public function week(TranslatorInterface $tl)
+    public function week(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots' => 'index,follow',
@@ -63,7 +64,7 @@ class DemoController extends AbstractController
      * Check if leap year or not
      */
     #[Route(path: '/leapyear', name: 'leapyear')]
-    public function leapyear(TranslatorInterface $tl)
+    public function leapyear(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots' => $tl->trans('index,follow'),
@@ -80,7 +81,7 @@ class DemoController extends AbstractController
      * Calculate age
      */
     #[Route(path: '/age', name: 'age')]
-    public function age(TranslatorInterface $tl)
+    public function age(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots' => 'index,follow',
@@ -96,7 +97,7 @@ class DemoController extends AbstractController
      * Progress
      */
     #[Route(path: '/progress', name: 'progress')]
-    public function progress(TranslatorInterface $tl)
+    public function progress(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots'       => 'index,follow',
@@ -114,7 +115,7 @@ class DemoController extends AbstractController
      * Average annual CO² level
      */
     #[Route(path: '/co2', name: 'co2')]
-    public function co2(TranslatorInterface $tl)
+    public function co2(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots' => 'index,follow',
@@ -134,7 +135,7 @@ class DemoController extends AbstractController
      * Reverse function for annual CO² level
      */
     #[Route(path: '/co2reverse', name: 'co2reverse')]
-    public function co2reverse(TranslatorInterface $tl)
+    public function co2reverse(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots' => 'index,follow',
@@ -152,7 +153,7 @@ class DemoController extends AbstractController
      * Public holidays in Germany
      */
     #[Route(path: '/germanpublicholidays', name: 'germanpublicholidays')]
-    public function germanpublicholidays(TranslatorInterface $tl)
+    public function germanpublicholidays(TranslatorInterface $tl) : Response
     {
         $data = [
             'meta_robots' => 'index,follow',
