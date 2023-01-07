@@ -8,12 +8,10 @@
         {% include 'buttonbar.html.twig' %}
     </div>
 
-
     <div class="mt-6">
         <h2 class="is-size-3 mb-2">{{ data.header }}</h2>
         <p>{{ data.message }} <a class="ml-1 button is-small is-outlined is-rounded" href="{{ data.link }}" target="_blank" rel="noreferrer noopener">Mehr dazu</a></p>
     </div>
-
 
     <div class="columns my-5">
         <div class="column">
@@ -32,7 +30,22 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="colum my-6">
+        <h3 class="my-2 is-size-4">Request Beispiel:</h3>
+        <div class="box">
+            <strong>GET:</strong> https://digidates.de/api/v1/week?date=2022-10-18
+        </div>
+    </div>
+
+    <div class="colum mt-5">
+        <h3 class="my-4 is-size-4">Response Beispiel:</h3>
+        <div class="my-4 is-bordered">
+            <code class="p-4 is-block">
+                <strong>JSON:</strong> { "week" : 41 }
+            </code>
+        </div>
     </div>
 
 {% endblock %}

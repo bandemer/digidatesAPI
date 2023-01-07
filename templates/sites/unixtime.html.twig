@@ -16,9 +16,9 @@
     <div class="columns my-5">
         <div class="column">
             <div class="field">
-                <label class="label is-medium">UTC Timestamp:</label>
+                <label class="label is-medium">Human Time (UTC):</label>
                 <div class="control">
-                    <input class="input is-medium" type="datetime" id="humantime">
+                    <input class="input is-medium" type="text" id="humantime">
                 </div>
             </div>
         </div>
@@ -32,12 +32,20 @@
         </div>
     </div>
 
-    <div class="colum">
-        <h3>Request</h3>
+    <div class="colum my-6">
+        <h3 class="my-2 is-size-4">Request Beispiel:</h3>
         <div class="box">
-            <strong>GET</strong> https://digidates.de/api/v1/unixtime?timestamp=2022-01-01
+            <strong>GET:</strong> https://digidates.de/api/v1/unixtime?timestamp=2023-01-01%2000:00:00
         </div>
+    </div>
 
+    <div class="colum mt-5">
+        <h3 class="my-4 is-size-4">Response Beispiel:</h3>
+        <div class="my-4 is-bordered">
+            <code class="p-4 is-block">
+                <strong>JSON:</strong> { "time" : 1640995200 }
+            </code>
+        </div>
     </div>
 
 {% endblock %}
@@ -57,17 +65,22 @@
         return json.time;
     }
 
-    function setHumanTime(ts = null)
+    function setHumanTime(ts)
     {
-        let date = new Date(ts * 1000);
-        document.getElementById('humantime').value = date.toUTCString();
+        const ht = new Date(ts * 1000);
+        let htString = ht.getUTCFullYear() + '-' +
+            String('00' + (ht.getUTCMonth() +1)).slice(-2) + '-' +
+            String('00' + ht.getUTCDate()).slice(-2) + ' ' +
+            String('00' + ht.getUTCHours()).slice(-2) + ':' +
+            String('00' + ht.getUTCMinutes()).slice(-2) + ':' +
+            String('00' + ht.getUTCSeconds()).slice(-2);
+        document.getElementById('humantime').value = htString;
     };
 
     document.getElementById('humantime').onchange = function ()
     {
         getUnixTime(this.value).then(timestamp => {
             document.getElementById('unixtime').value = timestamp;
-                setHumanTime(timestamp);
         })
     }
 

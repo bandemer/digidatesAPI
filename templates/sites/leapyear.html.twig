@@ -18,7 +18,7 @@
             <div class="field">
                 <label class="label is-medium">Jahr:</label>
                 <div class="control">
-                    <input type="number" min="0" step="1" class="input is-medium" id="year" value="2021">
+                    <input type="number" min="0" step="1" class="input is-medium" id="year" value="2023">
                 </div>
             </div>
         </div>
@@ -29,6 +29,22 @@
                     <input class="input is-medium" type="text" id="leapyear">
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="colum my-6">
+        <h3 class="my-2 is-size-4">Request Beispiel:</h3>
+        <div class="box">
+            <strong>GET:</strong> https://digidates.de/api/v1/leapyear?year=2024
+        </div>
+    </div>
+
+    <div class="colum mt-5">
+        <h3 class="my-4 is-size-4">Response Beispiel:</h3>
+        <div class="my-4 is-bordered">
+            <code class="p-4 is-block">
+                <strong>JSON:</strong> { "leapyear" : true }
+            </code>
         </div>
     </div>
 

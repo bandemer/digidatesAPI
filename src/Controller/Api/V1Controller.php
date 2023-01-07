@@ -316,6 +316,4 @@ class V1Controller extends AbstractController
             ['Access-Control-Allow-Origin' => '*']
         );
     }
-
-
 }
