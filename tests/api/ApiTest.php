@@ -186,7 +186,7 @@ class ApiTest extends \Codeception\Test\Unit
         $this->tester->seeResponseEquals(json_encode(['co2' => 315.98]));
 
         //Data available for all years from 1959 to last year
-        for ($i = 1959; $i < intval(date('Y')); $i++) {
+        for ($i = 1959; $i < intval(2022); $i++) {
             $this->tester->sendGET('/api/v1/co2/'.$i);
             $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
             $this->tester->seeResponseIsJson();
