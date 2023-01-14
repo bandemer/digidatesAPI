@@ -12,7 +12,15 @@ A REST-Api for time and date functions:
 * Possible year for given C0² value
 * German public holidays
 
-[View Demo](https://digidates.de/)
+## Demo or Docker
+
+Try the Demo: [View Demo](https://digidates.de/)
+
+Or clone the repository and use docker:
+
+    docker compose up
+
+## Documentation
 
 [View OpenAPI specification](https://digidates.de/docs/openapi.yaml) 
 
