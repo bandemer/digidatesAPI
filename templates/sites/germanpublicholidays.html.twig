@@ -16,7 +16,7 @@
     <div class="columns mt-5">
         <div class="column">
             <div class="field">
-                <label class="label is-medium">Jahr:</label>
+                <label class="label is-medium">{% trans %}Jahr{% endtrans %}:</label>
                 <div class="control">
                     <select class="input is-medium" id="year"></select>
                 </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="column">
             <div class="field">
-                <label class="label is-medium">Region:</label>
+                <label class="label is-medium">{% trans %}Region{% endtrans %}:</label>
                 <div class="control">
                     <select class="input is-medium" id="region"></select>
                 </div>
@@ -33,7 +33,7 @@
     </div>
     <div class="columns mb-5">
         <div class="column">
-            <h3 class="is-size-4">Feiertage:</h3>
+            <h3 class="is-size-4">{% trans %}Feiertage{% endtrans %}:</h3>
             <div class="is-bordered is-rounded has-background-light p-3">
                 <ul id="holidays"></ul>
             </div>
@@ -41,14 +41,14 @@
     </div>
 
     <div class="colum my-6">
-        <h3 class="my-2 is-size-4">Request Beispiel:</h3>
+        <h3 class="my-2 is-size-4">{% trans %}Request Beispiel{% endtrans %}:</h3>
         <div class="box">
             <strong>GET:</strong> https://digidates.de/api/v1/germanpublicholidays?year=2017&amp;region=de
         </div>
     </div>
 
     <div class="colum mt-5">
-        <h3 class="my-4 is-size-4">Response Beispiel:</h3>
+        <h3 class="my-4 is-size-4">{% trans %}Response Beispiel{% endtrans %}:</h3>
         <div class="my-4 is-bordered">
             <code class="p-4 is-block">
                 <strong>JSON:</strong><pre>

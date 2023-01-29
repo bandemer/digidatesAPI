@@ -67,7 +67,7 @@ class DemoController extends AbstractController
     public function leapyear(TranslatorInterface $tl) : Response
     {
         $data = [
-            'meta_robots' => $tl->trans('index,follow'),
+            'meta_robots' => 'index,follow',
             'meta_title'  => $tl->trans('Ist es ein Schaltjahr oder nicht?'),
             'meta_desc'   => $tl->trans('Prüfen, ob das angegeben Jahr ein Schaltjahr ist oder nicht.'),
             'header'      => $tl->trans('Schaltjahr'),
@@ -87,7 +87,7 @@ class DemoController extends AbstractController
             'meta_robots' => 'index,follow',
             'meta_title'  => $tl->trans('Das Alter ermitteln'),
             'meta_desc'   => $tl->trans('Das Alter für ein gegebenes Datum ermitteln.'),
-            'header'      => $tl->trans('Alter'),
+            'header'      => $tl->trans('Alter berechnen'),
             'message'     => $tl->trans('Das Alter für ein gegebenes Datum ermitteln.'),
         ];
         return $this->render('sites/age.html.twig', ['data' => $data]);
@@ -119,10 +119,10 @@ class DemoController extends AbstractController
     {
         $data = [
             'meta_robots' => 'index,follow',
-            'meta_title'  => $tl->trans('CO² im Jahr'),
-            'meta_desc'   => $tl->trans('Durchschnittlicher Jahreswert für C0² in der Athmosphäre in PPM'),
-            'header'      => $tl->trans('C0² im Jahr'),
-            'message'     => $tl->trans('Durchschnittlicher Jahreswert für C0² in der Athmosphäre in PPM'),
+            'meta_title'  => $tl->trans('CO² im Jahr ermitteln'),
+            'meta_desc'   => $tl->trans('Durchschnittlicher Jahreswert für CO² in der Atmosphäre in PPM'),
+            'header'      => $tl->trans('CO² im Jahr'),
+            'message'     => $tl->trans('Durchschnittlicher Jahreswert für CO² in der Atmosphäre in PPM'),
             'link'        => 'https://gml.noaa.gov/ccgg/trends/data.html',
             'minyear'     => 1959,
             'maxyear'     => intval(date('Y')) -1,
@@ -140,9 +140,9 @@ class DemoController extends AbstractController
         $data = [
             'meta_robots' => 'index,follow',
             'meta_title'  => $tl->trans('Jahr mit CO² Wert'),
-            'meta_desc'   => $tl->trans('In welchem Jahr lag der C0² Anteil in der Athmosphäre auf dem angegebenen Wert'),
+            'meta_desc'   => $tl->trans('In welchem Jahr lag der C0² Anteil in der Atmosphäre auf dem angegebenen Wert'),
             'header'      => $tl->trans('Jahr mit CO² Wert'),
-            'message'     => $tl->trans('In welchem Jahr lag der C0² Anteil in der Athmosphäre auf dem angegebenen Wert'),
+            'message'     => $tl->trans('In welchem Jahr lag der C0² Anteil in der Atmosphäre auf dem angegebenen Wert'),
             'link'        => 'https://gml.noaa.gov/ccgg/trends/data.html',
             'defaultyear' => intval(date('Y')) -1,
         ];

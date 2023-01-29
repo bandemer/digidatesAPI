@@ -16,7 +16,7 @@
     <div class="columns my-5">
         <div class="column">
             <div class="field">
-                <label class="label is-medium">Start:</label>
+                <label class="label is-medium">{% trans %}Start{% endtrans %}:</label>
                 <div class="control">
                     <input class="input is-medium" type="date" id="start" value="{{ data.defaultstartdate }}">
                 </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="column">
             <div class="field">
-                <label class="label is-medium">Ende:</label>
+                <label class="label is-medium">{% trans %}Ende{% endtrans %}:</label>
                 <div class="control">
                     <input class="input is-medium" type="date" id="end" value="{{ data.defaultenddate }}">
                 </div>
@@ -34,7 +34,7 @@
 
     <div class="my-4 content">
 
-        <label class="label is-medium">Fortschritt:</label>
+        <label class="label is-medium">{% trans %}Fortschritt{% endtrans %}:</label>
         <div class="control">
             <input class="input is-medium" type="text" id="progressvalue">
         </div>
@@ -44,14 +44,14 @@
     </div>
 
     <div class="colum my-6">
-        <h3 class="my-2 is-size-4">Request Beispiel:</h3>
+        <h3 class="my-2 is-size-4">{% trans %}Request Beispiel{% endtrans %}:</h3>
         <div class="box">
             <strong>GET:</strong> https://digidates.de/api/v1/progress?start=2023-01-01&end=2023-01-31
         </div>
     </div>
 
     <div class="colum mt-5">
-        <h3 class="my-4 is-size-4">Response Beispiel:</h3>
+        <h3 class="my-4 is-size-4">{% trans %}Response Beispiel{% endtrans %}:</h3>
         <div class="my-4 is-bordered">
             <code class="p-4 is-block">
                 <strong>JSON:</strong> { "float" : 0.22943402777777777, "percent" : 23 }

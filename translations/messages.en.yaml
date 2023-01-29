@@ -8,6 +8,10 @@ Willkommen bei DigiDates.de: Welcome to DigiDates.de
 DigiDates.de bietet eine Rest-API für Zeit- und Datumsberechnungen.: DigiDates.de provides a rest API for time and date calculations.
 Der Zugriff auf die API ist kostenlos und aktuell ohne Limitierung möglich.: Access to the API is free of charge and currently without limitation.
 
+API Demos: API Demos
+Request Beispiel: Request example
+Response Beispiel: Response example
+
 Unix-Time: Unix time
 Die Unix-Time gibt die Anzahl der Sekunden seit dem 1.1.1970 00:00:00 UTC an.: The Unix time indicates the number of seconds since 1/1/1970 00:00:00 UTC.
 https://de.wikipedia.org/wiki/Unixzeit: https://en.wikipedia.org/wiki/Unixzeit
@@ -15,8 +19,10 @@ https://de.wikipedia.org/wiki/Unixzeit: https://en.wikipedia.org/wiki/Unixzeit
 Gültiges Datum: Date validation
 Prüfen, ob ein Datum gültig ist: Check if a date is valid
 Prüft, ob das angegebene Datum gültig ist.: Checks if the specified date is valid.
+Gültig?: Valid?
 
 Kalenderwoche: Calendar week
+Kalenderwoche (KW): Calendar week
 Kalenderwoche ermitteln: Calculate calendar week
 Die Kalenderwoche zu einem bestimmten Datum ermitteln.: Calculate the calendar week on a given date.
 Die Kalenderwoche definiert nach ISO 8601. KW1 eines Jahres ist diejenige, die den ersten Donnerstag enthält.: The calendar week defined according to ISO 8601. CW1 of a year is the one that contains the first Thursday.
@@ -28,22 +34,32 @@ Prüfen, ob das angegeben Jahr ein Schaltjahr ist oder nicht.: Check whether the
 Ein Schaltjahr ist ein Jahr, das im Unterschied zum Gemeinjahr einen zusätzlichen Schalttag am 29.2. enthält.: A leap year is a year that, unlike the common year, contains an additional leap day on 2/29.
 https://de.wikipedia.org/wiki/Schaltjahr: https://en.wikipedia.org/wiki/Leap_year
 
-Alter: Age calculation
+Alter berechnen: Age calculation
 Das Alter ermitteln: Calculate age
 Das Alter für ein gegebenes Datum ermitteln.: Calculate age for given date
+Alter: Age
+Datum: Date
+Alter ausführlich: Age in detail
 
 Fortschritt: Progress
 Wie ist der Fortschritt: What is the progress
 Der aktuell vergangene Zeitraum von Anfang bis Ende in Prozent.: The current elapsed period from beginning to end in percent.
+Start: Start
+Ende: End
 
 CO² PPM: CO² PPM
 CO² im Jahr: CO² per year
-Durchschnittlicher Jahreswert für C0² in der Athmosphäre in PPM: Average annual value for C0² in the atmosphere in PPM
+CO² im Jahr ermitteln: Get CO² per year
+Durchschnittlicher Jahreswert für CO² in der Atmosphäre in PPM: Average annual value for CO² in the atmosphere in PPM
+CO² Level in PPM (Parts per Million): CO² level in ppm (parts per million)
+Jahr: Year
 
 CO² Reverse: CO² Reverse
 Jahr mit CO² Wert: Year with CO² value
-In welchem Jahr lag der C0² Anteil in der Athmosphäre auf dem angegebenen Wert: In which year was the C0² concentration in the atmosphere at the given value?
+In welchem Jahr lag der C0² Anteil in der Atmosphäre auf dem angegebenen Wert: In which year was the C0² concentration in the atmosphere at the given value?
 
 Deutsche Feiertage: German public holidays
 Gesetzliche Feiertage in Deutschland: Public holidays in Germany
 Eine Api für die gesetzlichen Feiertage in Deutschland und seinen Bundesländern.: An api for the public holidays in Germany and its federal states.
+Feiertage: Public holidays
+Region: Region

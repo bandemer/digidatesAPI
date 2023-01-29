@@ -13,11 +13,10 @@
         <p>{{ data.message }}</p>
     </div>
 
-
     <div class="columns mt-5">
         <div class="column">
             <div class="field">
-                <label class="label is-medium">Datum:</label>
+                <label class="label is-medium">{% trans %}Datum{% endtrans %}:</label>
                 <div class="control">
                     <input class="input is-medium" type="date" id="date" value="1970-01-01">
                 </div>
@@ -25,7 +24,7 @@
         </div>
         <div class="column">
             <div class="field">
-                <label class="label is-medium">Alter:</label>
+                <label class="label is-medium">{% trans %}Alter{% endtrans %}:</label>
                 <div class="control">
                     <input class="input is-medium" type="text" id="age">
                 </div>
@@ -35,7 +34,7 @@
     <div class="columns mb-5">
         <div class="column">
             <div class="field">
-                <label class="label is-medium">Alter ausführlich:</label>
+                <label class="label is-medium">{% trans %}Alter ausführlich{% endtrans %}:</label>
                 <div class="control">
                     <input class="input is-medium" type="text" id="ageextended">
                 </div>
@@ -44,14 +43,14 @@
     </div>
 
     <div class="colum my-6">
-        <h3 class="my-2 is-size-4">Request Beispiel:</h3>
+        <h3 class="my-2 is-size-4">{% trans %}Request Beispiel{% endtrans %}:</h3>
         <div class="box">
             <strong>GET:</strong> https://digidates.de/api/v1/age/1970-01-01
         </div>
     </div>
 
     <div class="colum mt-5">
-        <h3 class="my-4 is-size-4">Response Beispiel:</h3>
+        <h3 class="my-4 is-size-4">{% trans %}Response Beispiel{% endtrans %}:</h3>
         <div class="my-4 is-bordered">
             <code class="p-4 is-block">
                 <strong>JSON:</strong> { "age" : 53, "ageextended" : { "years" : 53, "months" : 0, "days" : 6 } }
