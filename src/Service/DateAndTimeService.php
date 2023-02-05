@@ -144,4 +144,27 @@ class DateAndTimeService
         }
         return $rA;
     }
+
+    /**
+     * @param string $date
+     * @return array
+     */
+    public function countdown(string $date)
+    {
+        $rA = [
+            'daysonly' => 0,
+            'countdown' => ['years' => 0, 'months' => 0, 'days' => 0]
+        ];
+
+        $dateTs = new \DateTime($date);
+        $today = new \DateTime('today');
+
+        if ($today < $dateTs) {
+            $rA['daysonly'] = intval((strtotime($date) - time()) / 86400) +1;
+            $rA['countdown']['years'] = intval($today->diff($dateTs)->format('%y'));
+            $rA['countdown']['months'] = intval($today->diff($dateTs)->format('%m'));
+            $rA['countdown']['days'] = intval($today->diff($dateTs)->format('%d'));
+        }
+        return $rA;
+    }
 }

@@ -316,4 +316,52 @@ class V1Controller extends AbstractController
             ['Access-Control-Allow-Origin' => '*']
         );
     }
+
+    /**
+     * Countdown to given date
+     */
+    #[Route(path: '/api/v1/countdown/{date}', methods: ['GET'])]
+    public function countdown(string $date, DateAndTimeService $service): JsonResponse
+    {
+        $response = [];
+        $httpCode = 200;
+
+        //If no year given, assume next possible date
+        if (preg_match('/^[0-1][0-9]-[0-3][0-9]$/', $date)) {
+            if (intval(date('md')) > intval(str_replace('-', '', $date))) {
+                $date = (date('Y') +1).'-'.$date;
+            } else {
+                $date = date('Y').'-'.$date;
+            }
+        }
+
+        //Check format of given date
+        if (preg_match('/^[0-9]{4,4}-[0-1][0-9]-[0-3][0-9]$/', $date)) {
+
+            //Check if given date is valid
+            $check = explode('-', $date);
+            if (checkdate(intval($check[1]), intval($check[2]), intval($check[0])) !== true) {
+                $response = ['error' => 'Given date is not a valid date.'];
+                $httpCode = 400;
+            } else {
+
+                //Ceck if given date lies in past
+                $dateTs = new \DateTime($date);
+                $today = new \DateTime('today');
+                if ($today > $dateTs) {
+                    $response = ['error' => 'Given date lies in the past.'];
+                    $httpCode = 400;
+                } else {
+                    $response = $service->countdown($date);
+                }
+            }
+        } else {
+            $response = ['error' => 'Dates must be in format YYYY-MM-DD or MM-DD'];
+            $httpCode = 400;
+        }
+
+        return $this->json($response, $httpCode,
+            ['Access-Control-Allow-Origin' => '*']
+        );
+    }
 }
