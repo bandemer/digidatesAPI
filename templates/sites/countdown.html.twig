@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}
+
+    <div class="is-pulled-right">
+        {% include 'buttonbar.html.twig' %}
+    </div>
+
+    <div class="mt-6">
+        <h2 class="is-size-3 mb-2">{{ data.header }}</h2>
+        <p>{{ data.message }}</p>
+    </div>
+
+    <div class="columns mt-5">
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">{% trans %}Datum{% endtrans %}:</label>
+                <div class="control">
+                    <input class="input is-medium" type="date" id="date" value="2024-12-31">
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">{% trans %}Countdown{% endtrans %}:</label>
+                <div class="control">
+                    <input class="input is-medium" type="text" id="countdown">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns mb-5">
+        <div class="column">
+            <div class="field">
+                <label class="label is-medium">{% trans %}Countdown ausführlich{% endtrans %}:</label>
+                <div class="control">
+                    <input class="input is-medium" type="text" id="countdownextended">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="colum my-6">
+        <h3 class="my-2 is-size-4">{% trans %}Request Beispiel{% endtrans %}:</h3>
+        <div class="box">
+            <strong>GET:</strong> https://digidates.de/api/v1/countdown/2024-12-31
+        </div>
+    </div>
+
+    <div class="colum mt-5">
+        <h3 class="my-4 is-size-4">{% trans %}Response Beispiel{% endtrans %}:</h3>
+        <div class="my-4 is-bordered">
+            <code class="p-4 is-block">
+                <strong>JSON:</strong> { "daysonly" : 691, "countdownextended" : { "years" : 1, "months" : 10, "days" : 22 } }
+            </code>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ encore_entry_script_tags('app') }}
+<script>
+
+    const callApi = async () => {
+
+        const date = document.getElementById('date').value;
+
+        const response = await fetch('/api/v1/countdown/' + date);
+        const json = await response.json();
+        document.getElementById('countdown').value = json.daysonly + ' Tage';
+        document.getElementById('countdownextended').value = json.countdown.years +
+            ' Jahre, ' + json.countdown.months + ' Monate und ' +
+            json.countdown.days + ' Tage';
+
+    }
+
+    document.getElementById('date').addEventListener('change', function () {
+        callApi();
+    });
+
+    callApi();
+
+</script>
+
+{% endblock %}

@@ -94,6 +94,22 @@ class DemoController extends AbstractController
     }
 
     /**
+     * Countdown
+     */
+    #[Route(path: '/countdown', name: 'countdown')]
+    public function countdown(TranslatorInterface $tl) : Response
+    {
+        $data = [
+            'meta_robots' => 'index,follow',
+            'meta_title'  => $tl->trans('Countdown'),
+            'meta_desc'   => $tl->trans('Wieviel Zeit bleibt bis zum Tag X?'),
+            'header'      => $tl->trans('Countdown'),
+            'message'     => $tl->trans('Wieviel Zeit bleibt bis zum Tag X?'),
+        ];
+        return $this->render('sites/countdown.html.twig', ['data' => $data]);
+    }
+
+    /**
      * Progress
      */
     #[Route(path: '/progress', name: 'progress')]

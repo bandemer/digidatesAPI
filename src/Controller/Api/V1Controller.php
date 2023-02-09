@@ -345,7 +345,7 @@ class V1Controller extends AbstractController
                 $httpCode = 400;
             } else {
 
-                //Ceck if given date lies in past
+                //Check if given date lies in past
                 $dateTs = new \DateTime($date);
                 $today = new \DateTime('today');
                 if ($today > $dateTs) {

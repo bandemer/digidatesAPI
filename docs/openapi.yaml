@@ -128,6 +128,36 @@ paths:
           schema:
             type: string
             example: "2022-12-31"
+  /countdown/{date}:
+    get:
+      description: Countdown to day X
+      responses:
+        '200':
+          description: Countdown to day X
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  daysonly:
+                    type: integer
+                  countdownextended:
+                    type: object
+                    properties:
+                      years:
+                        type: integer
+                      months:
+                        type: integer
+                      days:
+                        type: integer
+      parameters:
+        - in: path
+          name: date
+          required: true
+          description: Date for countdown
+          schema:
+            type: string
+            example: "2024-12-31"
   /age/{date}:
     get:
       description: Age of give date
