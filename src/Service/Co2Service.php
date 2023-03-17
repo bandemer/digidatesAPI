@@ -16,9 +16,16 @@ class Co2Service
      */
     private $dataPath = '../docs/co2_annmean_mlo.csv';
 
+    /**
+     * Maximum age of data file in seconds
+     * @var int
+     */
+    private $dataMaxAge = 604800;
+
     public function __construct()
     {
-        if (!file_exists($this->dataPath)) {
+        if (!file_exists($this->dataPath) OR
+            (time() - filemtime($this->dataPath) > $this->dataMaxAge)) {
             $data = file_get_contents($this->dataDownloadUrl);
             file_put_contents($this->dataPath, $data);
         }
