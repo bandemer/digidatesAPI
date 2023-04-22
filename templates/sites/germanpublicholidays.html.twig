@@ -16,7 +16,7 @@
     <div class="columns mt-5">
         <div class="column">
             <div class="field">
-                <label class="label is-medium">{% trans %}Jahr{% endtrans %}:</label>
+                <label class="label is-medium" for="year">{% trans %}Jahr{% endtrans %}:</label>
                 <div class="control">
                     <select class="input is-medium" id="year"></select>
                 </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="column">
             <div class="field">
-                <label class="label is-medium">{% trans %}Region{% endtrans %}:</label>
+                <label class="label is-medium" for="region">{% trans %}Region{% endtrans %}:</label>
                 <div class="control">
                     <select class="input is-medium" id="region"></select>
                 </div>
@@ -43,7 +43,7 @@
     <div class="colum my-6">
         <h3 class="my-2 is-size-4">{% trans %}Request Beispiel{% endtrans %}:</h3>
         <div class="box">
-            <strong>GET:</strong> https://digidates.de/api/v1/germanpublicholidays?year=2017&amp;region=de
+            <strong>GET:</strong> https://digidates.de/api/v1/germanpublicholidays?year=2023&amp;region=de
         </div>
     </div>
 
@@ -53,16 +53,17 @@
             <code class="p-4 is-block">
                 <strong>JSON:</strong><pre>
 {
-    "2017-01-01" : "Neujahr",
-    "2017-04-14" : "Karfreitag",
-    "2017-04-17" : "Ostermontag",
-    "2017-05-01" : "Tag der Arbeit",
-    "2017-05-25" : "Christi Himmelfahrt",
-    "2017-06-05" : "Pfingstmontag",
-    "2017-10-03" : "Tag der Deutschen Einheit",
-    "2017-12-25" : "1. Weihnachtstag",
-    "2017-12-26" : "2. Weihnachtstag"
-}</pre>
+    "2023-01-01" : "Neujahr",
+    "2023-04-07" : "Karfreitag",
+    "2023-04-10" : "Ostermontag",
+    "2023-05-01" : "Tag der Arbeit",
+    "2023-05-18" : "Christi Himmelfahrt",
+    "2023-05-29" : "Pfingstmontag",
+    "2023-10-03" : "Tag der Deutschen Einheit",
+    "2023-12-25" : "1. Weihnachtstag",
+    "2023-12-26" : "2. Weihnachtstag"
+}
+</pre>
             </code>
         </div>
     </div>
@@ -82,6 +83,9 @@
             html += '<option>' + json[i] + '</option>';
         }
         document.getElementById('year').innerHTML = html;
+
+        let curYear = new Date();
+        document.getElementById('year').value = curYear.getFullYear();
 
         response = await fetch('/api/v1/germanpublicholidays/supportedregions');
         json = await response.json();
