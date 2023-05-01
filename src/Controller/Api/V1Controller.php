@@ -64,7 +64,10 @@ class V1Controller extends AbstractController
         }
 
         return $this->json($response, $httpCode,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 
@@ -80,7 +83,10 @@ class V1Controller extends AbstractController
         return $this->json(
             ['week' => $kw],
             200,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 
@@ -96,7 +102,10 @@ class V1Controller extends AbstractController
         return $this->json(
             ['leapyear' => $leapYear],
             200,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 
@@ -113,14 +122,20 @@ class V1Controller extends AbstractController
             return $this->json(
                 'Bad Request',
                 400,
-                ['Access-Control-Allow-Origin' => '*']
+                [
+                    'Access-Control-Allow-Origin' => '*',
+                    'X-Robots-Tag' => 'noindex, nofollow'
+                ]
             );
         }
 
         return $this->json(
             ['checkdate' => $returnBool],
             200,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 
@@ -138,12 +153,18 @@ class V1Controller extends AbstractController
             return $this->json(
                 ['weekday' => $returnInt],
                 200,
-                ['Access-Control-Allow-Origin' => '*']
+                [
+                    'Access-Control-Allow-Origin' => '*',
+                    'X-Robots-Tag' => 'noindex, nofollow'
+                ]
             );
         } else {
             return $this->json('Bad Request',
                 400,
-                ['Access-Control-Allow-Origin' => '*']
+                [
+                    'Access-Control-Allow-Origin' => '*',
+                    'X-Robots-Tag' => 'noindex, nofollow'
+                ]
             );
         }
     }
@@ -160,7 +181,10 @@ class V1Controller extends AbstractController
 
         return $this->json(
             ['float' => $val / 100, 'percent' => round($val)], 200,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 
@@ -178,7 +202,6 @@ class V1Controller extends AbstractController
             checkdate($matches[2], $matches[3], $matches[1])) {
 
             $response = $dts->age($birthday);
-
         } else {
 
             $response = ['error' => 'Given birthday is not a valid date'];
@@ -186,7 +209,10 @@ class V1Controller extends AbstractController
         }
 
         return $this->json($response, $httpCode,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 
@@ -208,7 +234,6 @@ class V1Controller extends AbstractController
 
                 $httpCode = 400;
                 $response = ['error' => 'Error! No value for given year.'];
-
             } else {
                 $response['co2'] = $co2;
             }
@@ -220,7 +245,10 @@ class V1Controller extends AbstractController
         }
 
         return $this->json($response, $httpCode,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 
@@ -243,7 +271,6 @@ class V1Controller extends AbstractController
                 $httpCode = 400;
                 $response = ['error' => 'Error! No value for given year.'];
             }
-
         } else {
 
             $response = ['error' => 'Error! Not a valid float value.'];
@@ -251,7 +278,10 @@ class V1Controller extends AbstractController
         }
 
         return $this->json($response, $httpCode,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 
@@ -265,7 +295,10 @@ class V1Controller extends AbstractController
         $httpCode = 200;
 
         return $this->json($response, $httpCode,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 
@@ -279,7 +312,10 @@ class V1Controller extends AbstractController
         $httpCode = 200;
 
         return $this->json($response, $httpCode,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 
@@ -313,7 +349,10 @@ class V1Controller extends AbstractController
         }
 
         return $this->json($response, $httpCode,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 
@@ -361,7 +400,10 @@ class V1Controller extends AbstractController
         }
 
         return $this->json($response, $httpCode,
-            ['Access-Control-Allow-Origin' => '*']
+            [
+                'Access-Control-Allow-Origin' => '*',
+                'X-Robots-Tag' => 'noindex, nofollow'
+            ]
         );
     }
 }
