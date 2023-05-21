@@ -62,6 +62,7 @@ class DefaultController extends AbstractController
         $r = new Response($output);
         $r->headers->set('Content-Type', 'application/x-yaml');
         $r->headers->set('Access-Control-Allow-Origin', '*');
+        $r->headers->set('X-Robots-Tag', 'none');
         return new Response($output);
     }
 
