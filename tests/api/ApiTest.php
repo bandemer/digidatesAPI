@@ -20,11 +20,14 @@ class ApiTest extends \Codeception\Test\Unit
 
     public function testUnixtime()
     {
-        $this->tester->sendGET('/api/v1/unixtime');
+        $response = $this->tester->sendGET('/api/v1/unixtime');
         $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
         $this->tester->seeResponseIsJson();
         $this->tester->seeResponseMatchesJsonType(['time' => 'integer']);
-        $this->tester->seeResponseEquals(json_encode(['time' => time()]));
+
+        //max. 2 Seconds before current time
+        $rArray = json_decode($response, true);
+        $this->assertLessThan(3, time() - $rArray['time']);
 
         $this->tester->sendGET('/api/v1/unixtime?timestamp=Sat, 01 Jan 2022 00:00:00');
         $this->tester->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
