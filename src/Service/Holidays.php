@@ -5,11 +5,15 @@ namespace App\Service;
 class Holidays
 {
     /*
-     * Supported Years with date of easter sunday
-     * https://de.wikipedia.org/wiki/Osterdatum
+     * Supported Years with date of Easter sunday according to
+     * https://nl.wikipedia.org/wiki/Paas-_en_pinksterdatum
      */
     private $supportedYears =
         [
+            2013 => '2013-03-31',
+            2014 => '2014-04-20',
+            2015 => '2015-04-05',
+            2016 => '2016-03-27',
             2017 => '2017-04-16',
             2018 => '2018-04-01',
             2019 => '2019-04-21',
@@ -31,6 +35,12 @@ class Holidays
             2035 => '2035-04-25',
             2036 => '2036-04-13',
             2037 => '2037-04-05',
+            2038 => '2038-04-25',
+            2039 => '2039-04-10',
+            2040 => '2040-04-01',
+            2041 => '2041-04-21',
+            2042 => '2042-04-06',
+            2043 => '2043-03-29',
         ];
 
     /**
