@@ -1,42 +1,47 @@
-<div class="columns">
-    <div class="column py-0">
+<div class="columns is-multiline is-mobile">
+	<div class="column is-3-mobile is-2-tablet py-0 pr-4">
+        <a href="{{ url('index') }}">
+        	<img src="/img/digidates-logo.svg" alt="DigiDates.de Logo">
+        </a>        
+    </div>    
+    <div class="column is-8-mobile py-0 pr-4">
         <h1 class="is-size-1">
             <a href="{{ url('index') }}" class="has-text-dark">DigiDates.de</a>
         </h1>
     </div>
-    <div class="column">
-        <div class="dropdown is-hoverable">
-            <div class="dropdown-trigger">
-                <button class="button" aria-haspopup="true" aria-controls="moreinfo-dropdown">
-                    <span>{% trans %}Mehr erfahren{% endtrans %}</span>
-                    <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
-                </button>
-            </div>
-            <div class="dropdown-menu" id="moreinfo-dropdown" role="menu">
-                <div class="dropdown-content">
-                    <a class="dropdown-item" href="{{ url('openapi.yaml') }}">
-                        <img src="/img/swagger.svg" alt="Swagger Icon" height="22" width="22" class="mr-2"> OpenAPI Specification
-                    </a>
-                    <a class="dropdown-item" href="https://github.com/bandemer/digidatesAPI">
-                        <img src="/img/github.svg" alt="GitHub Icon" height="22" width="22" class="mr-2"> Fork on GitHub
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="dropdown is-hoverable mx-3">
-            <div class="dropdown-trigger">
-                <button class="button" aria-haspopup="true" aria-controls="lang-dropdown">
-                    <span>{% trans %}Sprache wählen{% endtrans %}</span>
-                    <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
-                </button>
-            </div>
-            <div class="dropdown-menu" id="lang-dropdown" role="menu">
-                <div class="dropdown-content">
-                    <a href="{{ path(app.request.get('_route'), { _locale: 'de' }) }}" class="dropdown-item">Deutsch</a>
-                    <a href="{{ path(app.request.get('_route'), { _locale: 'en' }) }}" class="dropdown-item">English</a>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="column is-12-mobile pt-2 pr-4">
+	    <div class="dropdown is-hoverable mr-2 mt-2">
+	        <div class="dropdown-trigger">
+	            <button class="button" aria-haspopup="true" aria-controls="moreinfo-dropdown">
+	                <span>{% trans %}Mehr erfahren{% endtrans %}</span>
+	                <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+	            </button>
+	        </div>
+	        <div class="dropdown-menu" id="moreinfo-dropdown" role="menu">
+	            <div class="dropdown-content">
+	                <a class="dropdown-item" href="{{ url('openapi.yaml') }}">
+	                    <img src="/img/swagger.svg" alt="Swagger Icon" height="22" width="22" class="mr-2"> OpenAPI Specification
+	                </a>
+	                <a class="dropdown-item" href="https://github.com/bandemer/digidatesAPI">
+	                    <img src="/img/github.svg" alt="GitHub Icon" height="22" width="22" class="mr-2"> Fork on GitHub
+	                </a>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="dropdown is-hoverable mt-2">
+	        <div class="dropdown-trigger">
+	            <button class="button" aria-haspopup="true" aria-controls="lang-dropdown">
+	                <span>{% trans %}Sprache wählen{% endtrans %}</span>
+	                <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+	            </button>
+	        </div>
+	        <div class="dropdown-menu" id="lang-dropdown" role="menu">
+	            <div class="dropdown-content">
+	                <a href="{{ path(app.request.get('_route'), { _locale: 'de' }) }}" class="dropdown-item">Deutsch</a>
+	                <a href="{{ path(app.request.get('_route'), { _locale: 'en' }) }}" class="dropdown-item">English</a>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 </div>
 <hr>
