@@ -1,10 +1,6 @@
 @charset "utf-8";
 @import "~bulma/bulma";
 
-$fa-font-path: "node_modules/@fortawesome/fontawesome-free/webfonts" !default;
-@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@import "node_modules/@fortawesome/fontawesome-free/scss/regular";
-
 .hero {
   background-color: rgba(#00d1b2, 0.1);
   border-radius: 0.5rem;
