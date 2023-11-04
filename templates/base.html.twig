@@ -55,9 +55,13 @@
         if (!httpRequest) {
             return false;
         }
-        httpRequest.open('GET', '/st?pu='+
+        let url = '/st?pu='+
             encodeURIComponent(window.location.href)+
-            '&pt={{ data.meta_title|url_encode }}&sw='+sw+'&sh='+sh);
+            '&pt={{ data.meta_title|url_encode }}&sw='+sw+'&sh='+sh;
+        if (document.referrer != undefined) {
+            url += '&rf='+encodeURIComponent(document.referrer);
+        }
+        httpRequest.open('GET', url);
         httpRequest.send();
     }
 })();
