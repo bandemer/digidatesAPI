@@ -9,15 +9,32 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Psr\Log\LoggerInterface;
 
 class V1Controller extends AbstractController
 {
+    /**
+     * Logger for API-Interface
+     * @var LoggerInterface
+     */
+    private $logger;
 
-    public function __construct()
+    public function __construct(LoggerInterface $apiusageLogger)
     {
         date_default_timezone_set('UTC');
+        $this->logger = $apiusageLogger;
     }
 
+    /**
+     * Logging API usage
+     */
+    private function log(string $message)
+    {
+        $this->logger->info($message,[
+            'remoteip'  => $_SERVER['REMOTE_ADDR'],
+            'useragent' => $_SERVER['HTTP_USER_AGENT'],
+            'referer'   => $_SERVER['HTTP_REFERER']]);
+    }
     /**
      * UnixTime
      */
@@ -63,6 +80,8 @@ class V1Controller extends AbstractController
             }
         }
 
+        $this->log('API Call for unixtime');
+
         return $this->json($response, $httpCode,
             [
                 'Access-Control-Allow-Origin' => '*',
@@ -79,6 +98,8 @@ class V1Controller extends AbstractController
     {
         $date = $req->get('date', '');
         $kw = $dts->week($date);
+
+        $this->log('API Call for week');
 
         return $this->json(
             ['week' => $kw],
@@ -99,6 +120,8 @@ class V1Controller extends AbstractController
         $year = $req->get('year', '');
         $leapYear = $dts->leapYear($year);
 
+        $this->log('API Call for leapyear');
+
         return $this->json(
             ['leapyear' => $leapYear],
             200,
@@ -117,6 +140,8 @@ class V1Controller extends AbstractController
     {
         $date = $req->get('date', '');
         $returnBool = $dts->checkdate($date);
+
+        $this->log('API Call for checkdate');
 
         if (is_null($returnBool)) {
             return $this->json(
@@ -147,6 +172,8 @@ class V1Controller extends AbstractController
     {
         $date = $req->get('date', '');
         $ts = $dts->weekday($date);
+
+        $this->log('API Call for weekday');
 
         if ($ts > 0) {
             $returnInt = (int) date('w', $ts);
@@ -179,6 +206,8 @@ class V1Controller extends AbstractController
         $end = $req->get('end', '');
         $val = $dts->progress($start, $end);
 
+        $this->log('API Call for progress');
+
         return $this->json(
             ['float' => $val / 100, 'percent' => round($val)], 200,
             [
@@ -207,6 +236,8 @@ class V1Controller extends AbstractController
             $response = ['error' => 'Given birthday is not a valid date'];
             $httpCode = 400;
         }
+
+        $this->log('API Call for age');
 
         return $this->json($response, $httpCode,
             [
@@ -244,6 +275,8 @@ class V1Controller extends AbstractController
             $httpCode = 400;
         }
 
+        $this->log('API Call for co2');
+
         return $this->json($response, $httpCode,
             [
                 'Access-Control-Allow-Origin' => '*',
@@ -277,6 +310,8 @@ class V1Controller extends AbstractController
             $httpCode = 400;
         }
 
+        $this->log('API Call for co2reverse');
+
         return $this->json($response, $httpCode,
             [
                 'Access-Control-Allow-Origin' => '*',
@@ -294,6 +329,8 @@ class V1Controller extends AbstractController
         $response = $service->getSupportedYears();
         $httpCode = 200;
 
+        $this->log('API Call for germanpublicholidays/supportedyears');
+
         return $this->json($response, $httpCode,
             [
                 'Access-Control-Allow-Origin' => '*',
@@ -310,6 +347,8 @@ class V1Controller extends AbstractController
     {
         $response = $service->getSupportedRegions();
         $httpCode = 200;
+
+        $this->log('API Call for germanpublicholidays/supportedregions');
 
         return $this->json($response, $httpCode,
             [
@@ -348,6 +387,8 @@ class V1Controller extends AbstractController
             $httpCode = 400;
         }
 
+        $this->log('API Call for germanpublicholidays');
+
         return $this->json($response, $httpCode,
             [
                 'Access-Control-Allow-Origin' => '*',
@@ -368,7 +409,7 @@ class V1Controller extends AbstractController
         //If no year given, assume next possible date
         if (preg_match('/^[0-1][0-9]-[0-3][0-9]$/', $date)) {
             if (intval(date('md')) > intval(str_replace('-', '', $date))) {
-                $date = (date('Y') +1).'-'.$date;
+                $date = strval(intval(date('Y')) +1) . '-' . $date;
             } else {
                 $date = date('Y').'-'.$date;
             }
@@ -398,6 +439,8 @@ class V1Controller extends AbstractController
             $response = ['error' => 'Dates must be in format YYYY-MM-DD or MM-DD'];
             $httpCode = 400;
         }
+
+        $this->log('API Call for countdown');
 
         return $this->json($response, $httpCode,
             [
