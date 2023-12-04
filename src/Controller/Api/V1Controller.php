@@ -30,11 +30,24 @@ class V1Controller extends AbstractController
      */
     private function log(string $message)
     {
+        $remoteip = '';
+        if (array_key_exists('REMOTE_ADDR', $_SERVER)) {
+            $remoteip = $_SERVER['REMOTE_ADDR'];
+        }
+        $useragent = '';
+        if (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
+            $useragent = $_SERVER['HTTP_USER_AGENT'];
+        }
+        $referer = '';
+        if (array_key_exists('HTTP_REFERER', $_SERVER)) {
+            $referer = $_SERVER['HTTP_REFERER'];
+        }
         $this->logger->info($message,[
-            'remoteip'  => $_SERVER['REMOTE_ADDR'],
-            'useragent' => $_SERVER['HTTP_USER_AGENT'],
-            'referer'   => $_SERVER['HTTP_REFERER']]);
+            'remoteip'  => $remoteip,
+            'useragent' => $useragent,
+            'referer'   => $referer]);
     }
+
     /**
      * UnixTime
      */
