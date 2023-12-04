@@ -65,5 +65,4 @@ class DefaultController extends AbstractController
         $r->headers->set('X-Robots-Tag', 'none');
         return $r;
     }
-
 }
