@@ -157,7 +157,7 @@ class V1Controller extends AbstractController
     public function weekday(Request $req, DateAndTimeService $dts): JsonResponse
     {
         $date = $req->get('date', '');
-        $ts = $dts->weekday($date);
+        $ts = $dts->unixtime($date);
 
         $this->logger->log('API Call for weekday');
 
