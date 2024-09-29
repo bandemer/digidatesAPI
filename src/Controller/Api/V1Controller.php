@@ -5,47 +5,21 @@ namespace App\Controller\Api;
 use App\Service\DateAndTimeService;
 use App\Service\Co2Service;
 use App\Service\Holidays;
+use App\Service\Apilogger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Psr\Log\LoggerInterface;
+
 
 class V1Controller extends AbstractController
 {
-    /**
-     * Logger for API-Interface
-     * @var LoggerInterface
-     */
     private $logger;
 
-    public function __construct(LoggerInterface $apiusageLogger)
+    public function __construct(Apilogger $apiusageLogger)
     {
         date_default_timezone_set('UTC');
         $this->logger = $apiusageLogger;
-    }
-
-    /**
-     * Logging API usage
-     */
-    private function log(string $message)
-    {
-        $remoteip = '';
-        if (array_key_exists('REMOTE_ADDR', $_SERVER)) {
-            $remoteip = $_SERVER['REMOTE_ADDR'];
-        }
-        $useragent = '';
-        if (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
-            $useragent = $_SERVER['HTTP_USER_AGENT'];
-        }
-        $referer = '';
-        if (array_key_exists('HTTP_REFERER', $_SERVER)) {
-            $referer = $_SERVER['HTTP_REFERER'];
-        }
-        $this->logger->info($message,[
-            'remoteip'  => $remoteip,
-            'useragent' => $useragent,
-            'referer'   => $referer]);
     }
 
     /**
@@ -54,7 +28,6 @@ class V1Controller extends AbstractController
     #[Route(path: '/api/v1/unixtime', methods: ['GET'])]
     public function unixtime(Request $req): JsonResponse
     {
-
         $timestamp = $req->get('timestamp', '');
 
         $response = ['time' => time()];
@@ -93,7 +66,7 @@ class V1Controller extends AbstractController
             }
         }
 
-        $this->log('API Call for unixtime');
+        $this->logger->log('API Call for unixtime');
 
         return $this->json($response, $httpCode,
             [
@@ -112,7 +85,7 @@ class V1Controller extends AbstractController
         $date = $req->get('date', '');
         $kw = $dts->week($date);
 
-        $this->log('API Call for week');
+        $this->logger->log('API Call for week');
 
         return $this->json(
             ['week' => $kw],
@@ -133,7 +106,7 @@ class V1Controller extends AbstractController
         $year = $req->get('year', '');
         $leapYear = $dts->leapYear($year);
 
-        $this->log('API Call for leapyear');
+        $this->logger->log('API Call for leapyear');
 
         return $this->json(
             ['leapyear' => $leapYear],
@@ -154,7 +127,7 @@ class V1Controller extends AbstractController
         $date = $req->get('date', '');
         $returnBool = $dts->checkdate($date);
 
-        $this->log('API Call for checkdate');
+        $this->logger->log('API Call for checkdate');
 
         if (is_null($returnBool)) {
             return $this->json(
@@ -186,7 +159,7 @@ class V1Controller extends AbstractController
         $date = $req->get('date', '');
         $ts = $dts->weekday($date);
 
-        $this->log('API Call for weekday');
+        $this->logger->log('API Call for weekday');
 
         if ($ts > 0) {
             $returnInt = (int) date('w', $ts);
@@ -219,7 +192,7 @@ class V1Controller extends AbstractController
         $end = $req->get('end', '');
         $val = $dts->progress($start, $end);
 
-        $this->log('API Call for progress');
+        $this->logger->log('API Call for progress');
 
         return $this->json(
             ['float' => $val / 100, 'percent' => round($val)], 200,
@@ -250,7 +223,7 @@ class V1Controller extends AbstractController
             $httpCode = 400;
         }
 
-        $this->log('API Call for age');
+        $this->logger->log('API Call for age');
 
         return $this->json($response, $httpCode,
             [
@@ -288,7 +261,7 @@ class V1Controller extends AbstractController
             $httpCode = 400;
         }
 
-        $this->log('API Call for co2');
+        $this->logger->log('API Call for co2');
 
         return $this->json($response, $httpCode,
             [
@@ -323,7 +296,7 @@ class V1Controller extends AbstractController
             $httpCode = 400;
         }
 
-        $this->log('API Call for co2reverse');
+        $this->logger->log('API Call for co2reverse');
 
         return $this->json($response, $httpCode,
             [
@@ -342,7 +315,7 @@ class V1Controller extends AbstractController
         $response = $service->getSupportedYears();
         $httpCode = 200;
 
-        $this->log('API Call for germanpublicholidays/supportedyears');
+        $this->logger->log('API Call for germanpublicholidays/supportedyears');
 
         return $this->json($response, $httpCode,
             [
@@ -361,7 +334,7 @@ class V1Controller extends AbstractController
         $response = $service->getSupportedRegions();
         $httpCode = 200;
 
-        $this->log('API Call for germanpublicholidays/supportedregions');
+        $this->logger->log('API Call for germanpublicholidays/supportedregions');
 
         return $this->json($response, $httpCode,
             [
@@ -400,7 +373,7 @@ class V1Controller extends AbstractController
             $httpCode = 400;
         }
 
-        $this->log('API Call for germanpublicholidays');
+        $this->logger->log('API Call for germanpublicholidays');
 
         return $this->json($response, $httpCode,
             [
@@ -453,7 +426,7 @@ class V1Controller extends AbstractController
             $httpCode = 400;
         }
 
-        $this->log('API Call for countdown');
+        $this->logger->log('API Call for countdown');
 
         return $this->json($response, $httpCode,
             [
