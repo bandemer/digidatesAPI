@@ -109,7 +109,7 @@ class Holidays
             'title' => [ 'de' => 'Mecklenburg-Vorpommern', 'en' => 'Mecklenburg-Vorpommern'],
             'holidays' => ['Neujahrstag', 'Frauentag', 'Karfreitag',
                 'Ostermontag', '1. Mai', 'Christi-Himmelfahrtstag',
-                'Pfingstmontag', 'Tag der Deutschen Einheit', 'Lower Saxony',
+                'Pfingstmontag', 'Tag der Deutschen Einheit', 'Reformationstag',
                 '1. Weihnachtstag', '2. Weihnachtstag']
             ],
         'de-ni' => [
