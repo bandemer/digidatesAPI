@@ -219,6 +219,11 @@ class Holidays
             $days['2017-10-31'] = "500. Jahrestag der Reformation";
             ksort($days);
         }
+        //special single holiday in Berlin
+        if ($year == 2025 AND $region == 'DE-BE') {
+            $days['2025-05-08'] = "80. Jahrestag der Befreiung vom Nationalsozialismus";
+            ksort($days);
+        }
         return $days;
     }
 
