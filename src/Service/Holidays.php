@@ -215,12 +215,12 @@ class Holidays
         }
 
         //Special single holiday in Bremen
-        if ($year == 2017 AND $region == 'DE-HB') {
+        if ($year == 2017 AND $region == 'de-hb') {
             $days['2017-10-31'] = "500. Jahrestag der Reformation";
             ksort($days);
         }
         //special single holiday in Berlin
-        if ($year == 2025 AND $region == 'DE-BE') {
+        if ($year == 2025 AND $region == 'de-be') {
             $days['2025-05-08'] = "80. Jahrestag der Befreiung vom Nationalsozialismus";
             ksort($days);
         }
