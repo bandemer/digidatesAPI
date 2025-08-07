@@ -19,6 +19,7 @@
 /templates/sites/impressum.html.twig
 
 /docs/co2_annmean_mlo.csv
+/public/img/imp.png
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
