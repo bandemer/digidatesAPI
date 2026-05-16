@@ -77,12 +77,12 @@
         ]
     },
     "symfony/framework-bundle": {
-        "version": "5.4",
+        "version": "6.4",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
-            "version": "5.4",
-            "ref": "3cd216a4d007b78d8554d44a5b1c0a446dab24fb"
+            "version": "6.4",
+            "ref": "08c492c28925bf921d98bc26fd815ae8a38b33d9"
         },
         "files": [
             "config/packages/cache.yaml",
