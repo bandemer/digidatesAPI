@@ -1,14 +1,12 @@
 {
     "devDependencies": {
-        "@babel/core": "^7.17.0",
-        "@babel/preset-env": "^7.16.0",
-        "@symfony/webpack-encore": "^6.0.0",
-        "core-js": "^3.38.0",
-        "regenerator-runtime": "^0.13.9",
-        "sass": "^1.99.0",
-        "sass-loader": "^16.0.8",
-        "webpack": "^5.72",
-        "webpack-cli": "^6.0.0"
+        "@babel/core": "^8.0.0",
+        "@babel/preset-env": "^8.0.0",
+        "@symfony/webpack-encore": "^7.0.0",
+        "babel-plugin-polyfill-corejs3": "^1.0.0",
+        "core-js": "^3.49.0",
+        "webpack": "^5.82",
+        "webpack-cli": "^7.0.0"
     },
     "license": "UNLICENSED",
     "private": true,
